@@ -74,15 +74,18 @@ public class usuario {
 	}
 	
 	//Mostrar
-	public String mostrar() {
+	public void mostrar() {
 		if (libros.isEmpty()) {
-		return nombre + " " + DNI + " " + edad + " " + codigo +  " ";
+		System.out.println (nombre + " " + DNI + " " + edad + " " + codigo +  " ");
 		}
 		else 
-			return nombre + " " + DNI + " " + edad + " " + codigo + mostrar();
+			System.out.println (nombre + " " + DNI + " " + edad + " " + codigo + " ");
+			for (libro libro : libros) {
+				System.out.println (nombre + " Tiene: " + libro.mostrar());
+			}
 	
 	}
-	//prueba
+	
 	
 	
 	

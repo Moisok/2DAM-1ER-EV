@@ -27,13 +27,25 @@ public class Propuesto3 {
 		usuarios.add(Ana);
 		usuarios.add(Alfonso);
 		
-		usuarios.add(copiaAlfonso);
-		usuarios.add(copiaAna);
+		
+		Ana.agregar(libro1);
+		Ana.agregar(libro2);
+		
+		Alfonso.agregar(libro3);
+		Alfonso.agregar(libro4);
 
 		for (usuario usuario : usuarios) {
-			System.out.println(usuario.mostrar());
+			usuario.mostrar();
 		}
-		
-	}
 
+		Alfonso.quitar(libro3);
+		Alfonso.quitar(libro4);
+		Ana.quitar(libro1);
+		Ana.quitar(libro2);
+		
+		for (usuario usuario : usuarios) {
+			usuario.mostrar();
+		}
+	}
 }
+	
