@@ -4,10 +4,14 @@ package Propuestos;
 //Moises sepulveda segarra
 
 import java.util.ArrayList;
-
+import java.util.Scanner;
 public class Propuesto3 {
 	
 	public static void main (String [] args) {
+		
+		Scanner teclado = new Scanner(System.in);
+		
+		int posicion;
 		
 		libro libro1 = new libro ("111234", "El quijote", "Cervantes", 567);
 		libro libro2 = new libro ("AADFGH", "Harry potter", "Rowling", 256);
@@ -38,10 +42,11 @@ public class Propuesto3 {
 			usuario.mostrar();
 		}
 
-		Alfonso.quitar(libro3);
-		Alfonso.quitar(libro4);
-		Ana.quitar(libro1);
-		Ana.quitar(libro2);
+		System.out.println ("Que libro quieres quitar");
+		posicion = teclado.nextInt();
+		
+		Alfonso.quitar(posicion);
+		Ana.quitar(posicion);
 		
 		for (usuario usuario : usuarios) {
 			usuario.mostrar();

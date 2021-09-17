@@ -36,8 +36,11 @@ public class usuario {
 		libros.add(x);
 	}
 	
-	public void quitar (libro x) {
-		libros.remove(x);
+	public void quitar (int posicion) {
+		if(libros.get(posicion) == null) {
+			System.out.println ("No se encuentra el libro");
+		}
+		libros.remove(posicion);
 	}
 
 	//Getters y setters
