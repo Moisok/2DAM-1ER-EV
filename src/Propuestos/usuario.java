@@ -9,7 +9,7 @@ public class usuario {
 	String DNI;
 	int edad;
 	int codigo;
-	ArrayList <libro> libros = new ArrayList <libro>();
+	ArrayList <material> materiales = new ArrayList <material>();
 	
 	//Contructor
 	public usuario (String nombre, String DNI, int edad, int codigo) {
@@ -32,15 +32,15 @@ public class usuario {
 	}
 	
 	//Metodo para agregar o quitar libros
-	public void agregar (libro x) {
-		libros.add(x);
+	public void agregar (material x) {
+		materiales.add(x);
 	}
 	
 	public void quitar (int posicion) {
-		if(libros.get(posicion) == null) {
+		if(materiales.get(posicion) == null) {
 			System.out.println ("No se encuentra el libro");
 		}
-		libros.remove(posicion);
+		materiales.remove(posicion);
 	}
 
 	//Getters y setters
@@ -78,13 +78,13 @@ public class usuario {
 	
 	//Mostrar
 	public void mostrar() {
-		if (libros.isEmpty()) {
+		if (materiales.isEmpty()) {
 		System.out.println (nombre + " " + DNI + " " + edad + " " + codigo +  " ");
 		}
 		else 
 			System.out.println (nombre + " " + DNI + " " + edad + " " + codigo + " ");
-			for (libro libro : libros) {
-				System.out.println (nombre + " Tiene: " + libro.mostrar());
+			for (material material  : materiales) {
+				System.out.println (nombre + " Tiene: " + material.mostrar());
 			}
 	
 	}

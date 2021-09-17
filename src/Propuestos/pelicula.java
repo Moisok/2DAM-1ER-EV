@@ -1,23 +1,27 @@
 package Propuestos;
 
-//Clase Libro
+//Clase pelicula
 
-public class libro extends material {
+public class pelicula extends material {
 	
 	//Artributos
 
 	private String autor;
 	
-	private int numPag;
+	private String duracion;
+	
+	private String compania;
 	
 	//Constructor
-	public libro (String codigo, String titulo, String autor, int numPag) {
+	public pelicula (String codigo, String titulo, String autor, String duracion, String compania) {
 		
 		super (codigo, titulo);
 		
 		this.autor = autor;
 		
-		this.numPag = numPag;
+		this.duracion = duracion;
+		
+		this.compania = compania;
 		
 	}
 
@@ -37,9 +41,7 @@ public class libro extends material {
 	
 	@Override
 	public String mostrar() {
-		return titulo + " " + autor + " " + numPag + " " + codigo + " es libro" ; 
+		return titulo + " " + autor + " " + duracion + " " + codigo + " compania: " + compania + "es pelicula" ; 
 	}
 	
-	
-
 }
