@@ -42,20 +42,21 @@ public class persona {
 	}
 	
 	//Metodo para calcular el IMC
-	public void imc () {
-		double imc = peso/(altura^2);
-		if (imc < 20) {
+	public double imc () {
+		double imc = peso/(Math.pow(altura, 2));
+		if (imc < 20 && imc > 0) {
 			imc = -1;
-			System.out.println ("Esta en el peso ideal" + imc);
+			
 		}
 		if (imc > 20 && imc < 25) {
 			imc = 0;
-			System.out.println ("Esta por debajo de su peso" + imc);
+			
 		}
-		else {
+		if (imc > 25 ) {
 			imc = 1;
-		}	System.out.println ("Tiene sobrepeso" + imc);
-		
+			
+		}
+		return imc;	
 	}
 	
 	//Metodo para saber si es mayor de edad o no
@@ -98,9 +99,7 @@ public class persona {
 
 			char letra = juegoCaracteres.charAt(modulo);
 			
-			System.out.println ("El DNI es: " + aleatorio+letra);
-			
-			DNI = aleatorio + " " + String.valueOf(letra);
+			DNI = aleatorio + String.valueOf(letra);
 	}
 
 	
@@ -125,6 +124,22 @@ public class persona {
 	public void setAltura(int altura) {
 		this.altura = altura;
 	}
+	
+	//Getter
+	public String getNombre() {
+		return nombre;
+	}
+
+	//ToString
+	@Override
+	public String toString() {
+		return "persona [nombre: " + nombre + ", edad: " + edad + ", DNI: " + DNI + ", sexo: " + sexo + ", peso: " + peso
+				+ ", altura: " + altura + "]";
+	}
+	
+	
+	
+	
 	
 	
 	
