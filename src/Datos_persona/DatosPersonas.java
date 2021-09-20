@@ -3,13 +3,12 @@ package Datos_persona;
 //Moises Sepulveda Segarra
 
 import java.util.Scanner;
-
-			int modulo= aleatorio % 23;
-
+public class DatosPersonas{
 	public static void main(String[] args) {
 	
 		//Construccion de Scaner
 		Scanner teclado = new Scanner(System.in);
+		//int modulo= aleatorio % 23;
 		
 		//Variables principales
 		String nombre;
@@ -18,9 +17,6 @@ import java.util.Scanner;
 		int peso;
 		int altura;
 		String dni = "null";
-		
-		//Variable de menu
-		int opcion;
 		
 		//Array clase persona
 		persona [] personas = new persona [4];
