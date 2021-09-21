@@ -14,11 +14,12 @@ public class Ejercicio5_lista {
 			paraules.push("Un");
 			paraules.push("Dos");
 			paraules.push("Tres");
-			paraules.push("Dos i mig"); //Entre "Dos" i "Tres"
+			
 			
 			//Quitamos los 2 ultimos y corregimos 
+			
 			paraules.pop();
-			paraules.pop();
+			
 			
 			paraules.push("Dos i mig");
 			paraules.push("Tres");
