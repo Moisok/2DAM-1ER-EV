@@ -1,6 +1,7 @@
 package ejercicios_listas;
 
-//Ejercicio de anotacion polaca inversa (debe de dar 21 como resultado final)
+//Operacion polaca inversa “3 4 6 5 - + * 6 +”
+//Ejercicio de anotacion polaca inversa (debe de dar 21 como resultado final) 
 //Creado por Moises Sepulveda Segarra
 // Ver https://programmerclick.com/article/65191665854/
 // LIFO (el ultimo que entra por el primero que sale)
