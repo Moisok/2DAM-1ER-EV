@@ -77,6 +77,8 @@ public class Ejercicio7_lista {
 		
 		//Obtenemos resultados
 		System.out.println(numeros);
+		
+		
 	}
 	
 }
