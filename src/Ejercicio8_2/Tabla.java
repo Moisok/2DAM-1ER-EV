@@ -1,13 +1,14 @@
 package Ejercicio8_2;
-
-//Clase dibujar (no se que hay que hacer xD)
+//Clase tabla creado por Moises Sepulveda Segarra
 
 public class Tabla implements IDibujable {
-
+	
 	@Override
-	public void Dibujar() {
-		// TODO Auto-generated method stub
+	public String Dibujar() {
+		return " ";
 		
 	}
+
+	
 
 }

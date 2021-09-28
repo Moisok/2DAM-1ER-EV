@@ -5,6 +5,6 @@ package Ejercicio8_2;
 public interface IDibujable {
 
 	//Creamos el metodo dibujar
-	void Dibujar();
+	String Dibujar();
 	
 }

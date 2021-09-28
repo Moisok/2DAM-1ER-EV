@@ -18,7 +18,8 @@ public class Circulo implements IFiguraGeometrica, IDibujable {
 	
 
 	@Override
-	public void Dibujar() {
+	public String Dibujar() {
+		return "Dibujo de un Circulo";
 	}
 
 	//Calcular el Area

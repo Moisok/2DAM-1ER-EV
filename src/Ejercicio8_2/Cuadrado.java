@@ -17,9 +17,8 @@ public class Cuadrado implements IFiguraGeometrica, IDibujable {
 	}
 
 	@Override
-	public void Dibujar() {
-		// TODO Auto-generated method stub
-		
+	public String Dibujar() {
+		return "Dibujo de un cuadrado";
 	}
 
 	@Override

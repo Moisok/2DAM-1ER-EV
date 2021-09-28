@@ -20,9 +20,8 @@ public class Rectangulo implements IFiguraGeometrica, IDibujable {
 	}
 
 	@Override
-	public void Dibujar() {
-		// TODO Auto-generated method stub
-		
+	public String Dibujar() {
+		return "Dibujo de un Rectangulo";
 	}
 
 	@Override
