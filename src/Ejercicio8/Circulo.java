@@ -2,7 +2,7 @@ package Ejercicio8;
 
 //Clase circulo
 
-	public class Circulo extends tipo implements figura2d {
+	public class Circulo extends dibujar {
 	
 	private double radio;
 	
@@ -11,21 +11,18 @@ package Ejercicio8;
 	private double long_area;
 	
 	//Constructor
-		public Circulo (String nombre, double radio) {
-			super (nombre);
+		public Circulo ( double radio) {
 			this.radio = radio;
 		}
 		
 		
 		//Metodos de interface
-		@Override
 		public double perimetro() {
 			long_perimetro = 2*Math.PI*radio;
 			return long_perimetro;
 		}
 
 		
-		@Override
 		public double area() {
 			double elevado = Math.pow(radio, 2);
 			long_area = Math.PI*elevado;
@@ -33,15 +30,13 @@ package Ejercicio8;
 		}
 
 		
-		@Override
 		public void escalar(double escala) {
 			radio = radio * escala;
 		}
 
 		
-		@Override
 		public String imprimir() {
-			return nombre + " " + radio + " " + long_perimetro + " " + long_area;
+			return  "Radio: " + radio + " Perimetro: " + long_perimetro + " Area: " + long_area;
 		}
 
 }

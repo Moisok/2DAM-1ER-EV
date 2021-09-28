@@ -1,6 +1,6 @@
 package Ejercicio8;
 
-public interface figura2d {
+public interface iFigura2d {
 	
 //Construimos los metodos
 	
