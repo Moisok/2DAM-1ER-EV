@@ -1,4 +1,4 @@
-package Ejercicio8_2;
+package Ejercicio9;
 
 //Interface dibujable
 

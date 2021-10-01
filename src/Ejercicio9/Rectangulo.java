@@ -1,4 +1,4 @@
-package Ejercicio8_2;
+package Ejercicio9;
 
 public class Rectangulo implements IFiguraGeometrica, IDibujable {
 	

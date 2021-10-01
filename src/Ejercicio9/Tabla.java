@@ -1,4 +1,4 @@
-package Ejercicio8_2;
+package Ejercicio9;
 //Clase tabla creado por Moises Sepulveda Segarra
 
 public class Tabla implements IDibujable {
