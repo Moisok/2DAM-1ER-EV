@@ -1,9 +1,7 @@
 package Ejercicio9;
 
-public class Circulo implements IFiguraGeometrica, IDibujable {
+public class Circulo extends FormasGeometricas {
 	
-	//Artributos para el constructor
-	private float radio;
 	
 	//Artributos para calculos
 	private float perimetro;
@@ -11,21 +9,20 @@ public class Circulo implements IFiguraGeometrica, IDibujable {
 	private float area;
 	
 	//Constructor
-	public Circulo (float radio) {
-		
-		this.radio=radio;
+	public Circulo (float lado) {
+		super(lado);
 	}
 	
 
 	@Override
 	public void Dibujar() {
-		System.out.println("Radio: " + radio + " Perimetro: " + perimetro + " area " + area);
+		System.out.println("Area: " + lado);
 	}
 
 	//Calcular el Area
 	@Override
 	public float CalcularArea() {
-		float elevado = (float) Math.pow(radio, 2);
+		float elevado = (float) Math.pow(lado, 2);
 		area = (float)(Math.PI*elevado);
 		return area;
 
@@ -34,10 +31,20 @@ public class Circulo implements IFiguraGeometrica, IDibujable {
 	//Calcular el perimetro
 	@Override
 	public float CalcularPerimetro() {
-		perimetro = (float)(2*Math.PI*radio);
+		perimetro = (float)(2*Math.PI*lado);
 		return perimetro;
 	}
 	
 	
+	@Override
+	public int compareTo (FormasGeometricas X) {
+		if (this.lado < X.lado) {
+            return -1;
+        }
+        if (lado > X.lado) {
+            return 1;
+        }
+        return 0;
+	} 
 
 }

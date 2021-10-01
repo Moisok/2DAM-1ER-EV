@@ -2,23 +2,20 @@ package Ejercicio9;
 
 //Creamos la clase cuadrado que heredara los metodos de las interfaces
 
-public class Cuadrado implements IFiguraGeometrica, IDibujable {
+public class Cuadrado extends FormasGeometricas {
 
-	//Artributo a pasar
-	private float lado;
-	
+
 	//Artributos para calculos
 	private float area;
 	private float perimetro;
 	
 	public Cuadrado (float lado) {
-		
-		this.lado=lado;
+		super(lado);
 	}
 
 	@Override
 	public void Dibujar() {
-		System.out.println("Lado: " + lado + " Area: " + area + " perimetro " + perimetro);
+		System.out.println("Area: " + lado);
 	}
 
 	@Override
@@ -32,5 +29,17 @@ public class Cuadrado implements IFiguraGeometrica, IDibujable {
 		perimetro = lado * 4;
 		return perimetro;
 	}
+	
+	
+	@Override
+	public int compareTo (FormasGeometricas X) {
+		if (this.lado < X.lado) {
+            return -1;
+        }
+        if (lado > X.lado) {
+            return 1;
+        }
+        return 0;
+	} 
 	
 }

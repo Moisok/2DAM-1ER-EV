@@ -1,9 +1,10 @@
 package Ejercicio9;
 
-public class Rectangulo implements IFiguraGeometrica, IDibujable {
+public class Rectangulo extends FormasGeometricas {
+	
 	
 	//Artributos a pasar
-	private float altura;
+	private float lado;
 	private float base;
 	
 	//Atributos para calcular
@@ -11,29 +12,38 @@ public class Rectangulo implements IFiguraGeometrica, IDibujable {
 	private float area;
 	
 	//Contructor
-	public Rectangulo (float perimetro, float area) {
-		
-		this.perimetro=perimetro;
-		
-		this.area=area;
+	Rectangulo(float lado, float base) {
+		super(lado);
+		this.base = base;
 		
 	}
+	
 
 	@Override
 	public void Dibujar() {
-		System.out.println("Altura: " + altura + " base: " + base + " perimetro " + perimetro + " area " + area);
+		System.out.println("Area: " + base);
 	}
 
 	@Override
 	public float CalcularArea() {
-		area = base*altura;
+		area = base*lado;
 		return area;
 	}
 
 	@Override
 	public float CalcularPerimetro() {
-		perimetro = (base*2)+(altura*2);
+		perimetro = (base*2)+(lado*2);
 		return perimetro;
 	}
 	
+	@Override
+	public int compareTo (FormasGeometricas X) {
+		if (this.lado < X.lado) {
+            return -1;
+        }
+        if (lado > X.lado) {
+            return 1;
+        }
+        return 0;
+	} 
 }

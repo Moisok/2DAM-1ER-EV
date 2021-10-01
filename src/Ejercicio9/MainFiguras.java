@@ -1,44 +1,70 @@
 package Ejercicio9;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class MainFiguras {
 
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		//Creamos los arrays y añadimos criterio a ordenar Area (al que yo he llamado lado)
 		
-		//Creamos las formas y la tabla
+		//Circulos
+		Circulo circulo1 = new Circulo (5);
+		Circulo circulo2 = new Circulo (7);
+		Circulo circulo3 = new Circulo (8);
 		
-		Circulo circulo1 = new Circulo (7);
-		Cuadrado cuadrado1 = new Cuadrado (6);
-		Rectangulo rectangulo1 = new Rectangulo (11,23);
+		//Cuadrados
+		Cuadrado cuadrado1 = new Cuadrado (87);
+		Cuadrado cuadrado2 = new Cuadrado (1);
+		Cuadrado cuadrado3 = new Cuadrado (75);
 		
-		//Creamos la tabla
-		Tabla tabla1 = new Tabla();
+		//Rectangulos
+		Rectangulo rectangulo1 = new Rectangulo (34,90);
+		Rectangulo rectangulo2 = new Rectangulo (89,52);
+		Rectangulo rectangulo3 = new Rectangulo (7,9);
 		
-		//Invocamos los metodos de cada figura
-		//Primero el circulo
-		circulo1.CalcularArea();
-		circulo1.CalcularPerimetro();
 		
-		//Ahora cuadrado
-		cuadrado1.CalcularArea();
-		cuadrado1.CalcularPerimetro();
+		//Creamos los arraylist 
+		ArrayList <Circulo> circulos = new ArrayList<>();
+		ArrayList <Cuadrado> cuadrados = new ArrayList<>();
+		ArrayList <Rectangulo> rectangulos = new ArrayList<>();
 		
-		//Por ultimo el rectangulo
-		rectangulo1.CalcularArea();
-		rectangulo1.CalcularPerimetro();
+		//Añadimos los circulos al Array
+		circulos.add(circulo1);
+		circulos.add(circulo2);
+		circulos.add(circulo3);
 		
-		//Ahora lo printeamos todo dentro del arraylist
-		ArrayList <IDibujable> dibujos = new ArrayList <IDibujable>();
+		//Añadimos los cuadrados al arrayList
+		cuadrados.add(cuadrado1);
+		cuadrados.add(cuadrado2);
+		cuadrados.add(cuadrado3);
 		
-		dibujos.add(tabla1);
-		dibujos.add(circulo1);
-		dibujos.add(cuadrado1);
-		dibujos.add(rectangulo1);
+		//Por ultimo los rectangulos
+		rectangulos.add(rectangulo1);
+		rectangulos.add(rectangulo2);
+		rectangulos.add(rectangulo3);
+			
+		//Ordenamos 
+		Collections.sort(circulos);
+		Collections.sort(cuadrados);
+		Collections.sort(rectangulos);
 		
-		for (IDibujable iDibujable : dibujos) {
-			iDibujable.Dibujar();
+		//Mostramos
+		System.out.println("Circulos ");
+		for (Circulo circulo : circulos) {
+			circulo.Dibujar();
+		}
+		
+		System.out.println(" ");
+		System.out.println("Cuadrados ");
+		for (Cuadrado cuadrado : cuadrados) {
+			cuadrado.Dibujar();
+		}
+		
+		System.out.println(" ");
+		System.out.println("Rectangulos ");
+		for (Rectangulo rectangulo : rectangulos) {
+			rectangulo.Dibujar();
 		}
 
 	}
