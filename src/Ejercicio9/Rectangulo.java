@@ -36,7 +36,4 @@ public class Rectangulo implements IFiguraGeometrica, IDibujable {
 		return perimetro;
 	}
 	
-	
-	
-
 }
