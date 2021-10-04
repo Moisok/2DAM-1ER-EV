@@ -1,12 +1,12 @@
 package Ejercicio11;
 
 public class Usuari {
-	// Atributs o camps estàndard
+	// Atributs o camps estï¿½ndard
 	private String dni;
 	private String nom;
-	private String adreça;
+	private String direccion;
 	private String telefon;
-	// Afegim la informació dels materials
+	// Afegim la informaciï¿½ dels materials
 	private Material[] materials;
 	private int contadorMat;
 	public static final int MAX_MAT = 5;
@@ -15,22 +15,22 @@ public class Usuari {
 	{
 	this.dni = dni;
 	this.nom = n;
-	this.adreça = a;
+	this.direccion = direccion;
 	this.telefon = t;
 	this.materials = new Material[MAX_MAT];
 	this.contadorMat = 0;
 	}
-	// Constructor de còpia
+	// Constructor de cï¿½pia
 	public Usuari(Usuari u)
 	{
 	this.dni = u.dni;
 	this.nom = u.nom;
-	this.adreça = u.adreça;
+	this.direccion = u.direccion;
 	this.telefon = u.telefon;
 	this.materials = u.materials;
 	this.contadorMat = u.contadorMat;
 	}
-	// Mètodes
+	// Mï¿½todes
 	public String getDni()
 	{
 	return dni;
@@ -47,13 +47,13 @@ public class Usuari {
 	{
 	nom = n;
 	}
-	public String getAdreça()
+	public String getdireccion()
 	{
-	return adreça;
+	return direccion;
 	}
-	public void setAdreça(String a)
+	public void setdireccion(String a)
 	{
-	adreça = a;
+		direccion = a;
 	}
 	public String getTelefon()
 	{
@@ -73,7 +73,7 @@ public class Usuari {
 	return contadorMat;
 	}
 	public String mostrar() {
-	return nom+"("+dni+","+adreça+","+telefon+")";
+	return nom+"("+dni+","+direccion+","+telefon+")";
 	}
 	// Afegix un nou material a l'array e incrementa el contador
 	public void nouMaterial(Material nou)
@@ -84,7 +84,7 @@ public class Usuari {
 	contadorMat++;
 	}
 	}
-	// Esborra el material de la posició indicada de l'array
+	// Esborra el material de la posiciï¿½ indicada de l'array
 	public void esborraMaterial(int posicio)
 	{
 	if (posicio >= 0 && posicio < contadorMat)

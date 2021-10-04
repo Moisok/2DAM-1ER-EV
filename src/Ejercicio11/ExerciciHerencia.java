@@ -25,7 +25,7 @@ public class ExerciciHerencia {
 			
 		//System.out.println("Usuari: " + usu1.getNom());
 			
-			System.out.println("Té " + usu1.getContadorMat() + " materials en préstec");
+			System.out.println("Tiene " + usu1.getContadorMat() + " materials prestados");
 			Material[] materials = usu1.getMaterials();
 			
 		for (int i = 0; i < usu1.getContadorMat(); i++){
