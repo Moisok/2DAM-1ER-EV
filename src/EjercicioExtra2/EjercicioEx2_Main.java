@@ -1,35 +1,38 @@
 package EjercicioExtra2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class EjercicioEx2_Main {
 
 	public static void main(String[] args) {
 		
+		
 		//Creamos los empleados de madrid
-		Empleado Juan = new Empleado ("Juan", "Programador", 19, 0, 1200, 12,"Madrid");
+		Empleado Juan = new Empleado ("Juan", "Programador", 19, 2, 1100, 12,"Madrid");
 		
-		Empleado Agapito = new Empleado ("Agapito", "Analista", 20, 2, 1250, 12,"Madrid");
+		Empleado Agapito = new Empleado ("Agapito", "Analista", 20, 2, 1350, 12,"Madrid");
 		
-		Empleado Maria = new Empleado ("Maria", "Jefa de oficina", 24, 4, 1600, 14,"Madrid");
+		Empleado Maria = new Empleado ("Maria", "Jefa de oficina", 24, 9, 1600, 14,"Madrid");
 		
 		Empleado Ramon = new Empleado ("Ramon", "Programador", 22, 2, 1200, 12, "Madrid");
 		
 		Empleado Jennifer = new Empleado ("Jennifer", "Analista", 26, 5, 1300, 14 ,"Madrid");
 		
 		//Ahora creamos los empleados de Valencia
-		Empleado Andy = new Empleado ("Andy", "Programador", 23, 4, 1250, 14,"Valencia");
+		Empleado Andy = new Empleado ("Andy", "Programador", 23, 2, 1250, 14,"Valencia");
 		
 		Empleado Albert = new Empleado ("Albert", "Analista", 28, 8, 1550, 14,"Valencia");
 		
-		Empleado Soraya = new Empleado ("Soraya", "Jefa de oficina", 30, 6, 1600, 14,"Valencia");
+		Empleado Soraya = new Empleado ("Soraya", "Jefa de oficina", 30, 9, 1600, 14,"Valencia");
 		
-		Empleado Sandra = new Empleado ("Sandra", "Programador", 25, 5, 1500, 14, "Valencia");
+		Empleado Sandra = new Empleado ("Sandra", "Programador", 25, 2, 1500, 14, "Valencia");
 		
-		Empleado Miguel = new Empleado ("Miguel", "Analista", 29, 9, 1550, 14 ,"Valencia");
+		Empleado Miguel = new Empleado ("Miguel", "Analista", 29, 8, 1550, 14 ,"Valencia");
 		
-		//Por ultimo el director de la empresa
+		//Director
 		Empleado Adolfo = new Empleado ("Adolfo", "Director",40 ,15 ,3600 ,16 ,"Madrid");
+		
 		
 		//Creamos ArrayList
 		ArrayList <Empleado> empleados = new ArrayList<Empleado>();
@@ -38,7 +41,6 @@ public class EjercicioEx2_Main {
 		empleados.add(Miguel);
 		empleados.add(Albert);
 		empleados.add(Jennifer);
-		empleados.add(Adolfo);
 		empleados.add(Sandra);
 		empleados.add(Soraya);
 		empleados.add(Andy);
@@ -46,6 +48,7 @@ public class EjercicioEx2_Main {
 		empleados.add(Maria);
 		empleados.add(Agapito);
 		empleados.add(Juan);
+		empleados.add(Adolfo);
 		
 		//Ahora creamos un bucle for each para calcularles a todos el salario bruto
 		for (Empleado empleado : empleados) {
@@ -53,12 +56,22 @@ public class EjercicioEx2_Main {
 		}
 		
 		//Ahora creamos otro bucle para mostrar de manera desordenada
+		/*for (Empleado empleado : empleados) {
+			System.out.println(empleado.mostrar());
+		}*/
+		
+		//Ahora ordenamos aplicando los criterios de ordenacion
+		Collections.sort(empleados);
 		for (Empleado empleado : empleados) {
 			System.out.println(empleado.mostrar());
 		}
 		
-		//Ahora ordenamos aplicando los criterios de ordenacion
+		System.out.println(" ");
 		
+		Collections.sort(empleados, new ComparaSueldo());
+		for (Empleado empleado : empleados) {
+			System.out.println(empleado.mostrar());
+		}
 		
 	}
 

@@ -51,6 +51,13 @@ public class Empleado implements Comparable<Empleado> {
 	public int getPaga() {
 		return paga;
 	}
+	public String getOficina() {
+		return oficina;
+	}
+	public double getSueldoBrutoAnual() {
+		return sueldoBrutoAnual;
+	}
+	
 
 	//Calcular sueldo bruto anual
 	double sueldoAnual () {
@@ -67,8 +74,20 @@ public class Empleado implements Comparable<Empleado> {
 	//metodo compare To
 	@Override
 	public int compareTo(Empleado o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (cargo.equals("Director")){
+			return -1;
+		}
+		else if (!o.cargo.equals("Director") && cargo.equals("Jefa de oficina") && oficina.equals("Madrid")){
+			return -1;
+		}
+		else if (AniosExp > o.AniosExp && cargo.equals("Jefa de oficina") || sueldoBrutoAnual > o.sueldoBruto && cargo.equals("Jefa de oficina")) {
+			return -1;
+		}
+		else if (AniosExp < o.AniosExp) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
-
 }
