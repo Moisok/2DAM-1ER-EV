@@ -80,7 +80,7 @@ public class Empleado implements Comparable<Empleado> {
 		else if (!o.cargo.equals("Director") && cargo.equals("Jefa de oficina") && oficina.equals("Madrid")){
 			return -1;
 		}
-		else if (AniosExp > o.AniosExp && cargo.equals("Jefa de oficina") || sueldoBrutoAnual > o.sueldoBruto && cargo.equals("Jefa de oficina")) {
+		else if (AniosExp > o.AniosExp && cargo.equals("Jefa de oficina") || sueldoBrutoAnual > o.sueldoBrutoAnual && cargo.equals("Jefa de oficina")) {
 			return -1;
 		}
 		else if (AniosExp < o.AniosExp) {

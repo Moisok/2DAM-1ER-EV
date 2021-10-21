@@ -55,10 +55,6 @@ public class EjercicioEx2_Main {
 			empleado.sueldoAnual();
 		}
 		
-		//Ahora creamos otro bucle para mostrar de manera desordenada
-		/*for (Empleado empleado : empleados) {
-			System.out.println(empleado.mostrar());
-		}*/
 		
 		//Ahora ordenamos aplicando los criterios de ordenacion
 		Collections.sort(empleados);
@@ -68,6 +64,7 @@ public class EjercicioEx2_Main {
 		
 		System.out.println(" ");
 		
+		//Ahora ordenamos con el comparar sueldo
 		Collections.sort(empleados, new ComparaSueldo());
 		for (Empleado empleado : empleados) {
 			System.out.println(empleado.mostrar());
