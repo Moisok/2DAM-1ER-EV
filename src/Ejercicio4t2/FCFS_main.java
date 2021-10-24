@@ -52,7 +52,7 @@ public class FCFS_main {
 		        	   procesoD++;
 		        	   System.out.print("D");
 		           }
-		           if (segundo == 41) {
+		           if (segundo == 40) {
 		        	   timer.cancel();
 		        	   System.out.println(" ");
 		        	   System.out.println(" ");
