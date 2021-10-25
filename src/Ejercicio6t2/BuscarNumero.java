@@ -6,7 +6,6 @@ package Ejercicio6t2;
 public class BuscarNumero implements Runnable {
 	
 	private int numero;
-	int contador = 1;
 	int desde = 2;
     int hasta;
     boolean esPrimo;
@@ -58,8 +57,8 @@ public class BuscarNumero implements Runnable {
 	//Ahora buscamos los numeros y creamos las filas segun el numero que hemos introducido
 	@Override
 	public void run() {
-		System.out.println(" ");
-		System.out.println("Hilo: " + numero);
+		//System.out.println(" ");
+		//System.out.println("Hilo: " + numero);
 			for (int i = desde; i <= hasta; i++) {
 	            esPrimo = true;
 	            for (int j = 2; j <= Math.sqrt(i) && esPrimo; j++) {
@@ -69,8 +68,7 @@ public class BuscarNumero implements Runnable {
 	            }
 
 	            if (esPrimo) {
-	                System.out.print(i);
-	                System.out.print(" ");
+	                System.out.println(i);
 	            }
 	        }
 		}

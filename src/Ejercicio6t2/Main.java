@@ -53,98 +53,98 @@ public class Main {
 				break;
 			case 2:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
 				break;	
 			case 3:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
-				hilo2.join();
+				//hilo2.join();
 				hilo3.start();
 				break;	
 			case 4:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
-				hilo2.join();
+				//hilo2.join();
 				hilo3.start();
-				hilo3.join();
+				//hilo3.join();
 				hilo4.start();
 				break;	
 			case 5:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
-				hilo2.join();
+				//hilo2.join();
 				hilo3.start();
-				hilo3.join();
+				//hilo3.join();
 				hilo4.start();
-				hilo4.join();
+				//hilo4.join();
 				hilo5.start();
 				break;	
 			case 6:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
-				hilo2.join();
+				//hilo2.join();
 				hilo3.start();
-				hilo3.join();
+				//hilo3.join();
 				hilo4.start();
-				hilo4.join();
+				//hilo4.join();
 				hilo5.start();
-				hilo5.join();
+				//hilo5.join();
 				hilo6.start();
 				break;
 			case 7:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
-				hilo2.join();
+				//hilo2.join();
 				hilo3.start();
-				hilo3.join();
+				//hilo3.join();
 				hilo4.start();
-				hilo4.join();
+				//hilo4.join();
 				hilo5.start();
-				hilo5.join();
+				//hilo5.join();
 				hilo6.start();
-				hilo6.join();
+				//hilo6.join();
 				hilo7.start();
 				break;	
 			case 8:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
-				hilo2.join();
+				//hilo2.join();
 				hilo3.start();
-				hilo3.join();
+				//hilo3.join();
 				hilo4.start();
-				hilo4.join();
+				//hilo4.join();
 				hilo5.start();
-				hilo5.join();
+				//hilo5.join();
 				hilo6.start();
-				hilo6.join();
+				//hilo6.join();
 				hilo7.start();
-				hilo7.join();
+				//hilo7.join();
 				hilo8.start();
 				break;	
 			case 9:
 				hilo1.start();
-				hilo1.join();
+				//hilo1.join();
 				hilo2.start();
-				hilo2.join();
+				//hilo2.join();
 				hilo3.start();
-				hilo3.join();
+				//hilo3.join();
 				hilo4.start();
-				hilo4.join();
+				//hilo4.join();
 				hilo5.start();
-				hilo5.join();
+				//hilo5.join();
 				hilo6.start();
-				hilo6.join();
+				//hilo6.join();
 				hilo7.start();
-				hilo7.join();
+				//hilo7.join();
 				hilo8.start();
-				hilo8.join();
+				//hilo8.join();
 				hilo9.start();
 				break;	
 			}
@@ -160,8 +160,3 @@ public class Main {
 
 
 
-/*Proceso1 hilo1 = new Proceso1();
-BuscarNumero objRunnable = new BuscarNumero();
-Thread hilo2=new Thread(objRunnable);
-hilo1.start();
-hilo2.start();*/
