@@ -27,6 +27,8 @@ public class Main {
 				BuscarNumero proceso = new BuscarNumero(i);
 				Thread hilo = new Thread(proceso);
 				hilo.start();
+				//Con el join ordenamos, es decir hasta que no acaba el primer hilo no sigue con el siguiente
+				//hilo.join();
 			}
 
 		}	
