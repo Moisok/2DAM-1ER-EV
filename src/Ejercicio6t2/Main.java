@@ -24,11 +24,11 @@ public class Main {
 			System.out.println("Has introducido " + numero + " se generara " + numero + " hilos");
 			//Bucle para el tema de los hilos
 			for (int i=1;i<=numero;i++) {
-				BuscarNumero proceso = new BuscarNumero (i);
+				BuscarNumero proceso = new BuscarNumero(i);
 				Thread hilo = new Thread(proceso);
 				hilo.start();
 			}
-			
+
 		}	
 			
 	}

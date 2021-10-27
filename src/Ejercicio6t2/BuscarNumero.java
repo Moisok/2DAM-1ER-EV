@@ -6,9 +6,9 @@ package Ejercicio6t2;
 public class BuscarNumero implements Runnable {
 	
 	private int numero;
-	int desde = 2;
-    int hasta;
-    boolean esPrimo;
+	private int desde = 2;
+    private int hasta;
+    private boolean esPrimo;
 	
 	public BuscarNumero(int numero) {
 		this.numero = numero;
@@ -67,7 +67,7 @@ public class BuscarNumero implements Runnable {
 	                }
 	            }
 	            if (esPrimo) {
-	                System.out.println(i);
+	                System.out.println(Thread.currentThread().getName()+" "+i);
 	            }
 	        }
 		}
