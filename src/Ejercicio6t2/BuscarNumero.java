@@ -66,7 +66,6 @@ public class BuscarNumero implements Runnable {
 	                    esPrimo = false;
 	                }
 	            }
-
 	            if (esPrimo) {
 	                System.out.println(i);
 	            }
