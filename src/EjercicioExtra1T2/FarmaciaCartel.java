@@ -34,6 +34,7 @@ public class FarmaciaCartel {
 
 class Cartel implements Runnable {
 	int contador = 0;
+	//int contador2 = 0;
 	String mensaje1 = "Hidratate bien";
 	String mensaje2 = "Consume 5 lacteos al dia";
 	String mensaje3 = "Come 3 piezas de fruta al dia";
@@ -44,14 +45,18 @@ class Cartel implements Runnable {
 	
 	@Override
 	public void run() {
+		int random = (int)(Math.random()*4);
 		mensaje.add(mensaje1);
 		mensaje.add(mensaje2);
 		mensaje.add(mensaje3);
 		mensaje.add(mensaje4);
 		mensaje.add(mensaje5);
-		int random = (int)(Math.random()*4+0);
 		System.out.println(mensaje.get(random) + " (Segundo:[" +contador+ "])");
 		contador = contador + 5;
+		/*contador2 = contador2 + 1;
+		if (contador2 == 5) {
+			contador2=0;
+		}*/
 	}
 }
 	
