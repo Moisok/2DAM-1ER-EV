@@ -18,7 +18,7 @@ public class RR_Main {
 		int quatum = 2;
 		
 		//Huecos de procesador
-		int huevos = 38;
+		int huecos = 38;
 		
 		String procesos [];
 		
