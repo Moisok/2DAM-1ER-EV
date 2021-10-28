@@ -46,7 +46,6 @@ public class MainEjercicio5t2 {
 					System.out.print(resultados2.get());
 					System.out.print(" ");
 				}
-				
 			}
 			catch (InterruptedException | ExecutionException e) {
 				
