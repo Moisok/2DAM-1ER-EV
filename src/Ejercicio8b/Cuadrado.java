@@ -1,4 +1,4 @@
-package Ejercicio8_2;
+package Ejercicio8b;
 
 //Creamos la clase cuadrado que heredara los metodos de las interfaces
 
