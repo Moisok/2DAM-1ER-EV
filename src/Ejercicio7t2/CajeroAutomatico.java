@@ -42,10 +42,13 @@ class Operacion implements Runnable{
 	@Override
 	public void run() {
 	 try {
+		 for (int i=0;i<10;i++) {
 			 sueldo = ingresar(sueldo);
 			 System.out.println(sueldo + " [INGRESO] " + s.availablePermits() + " " + Thread.currentThread().getName());
 			 sueldo = retirar(sueldo);
 			 System.out.println(sueldo + " [RETIRADA] " + s.availablePermits() + " " + Thread.currentThread().getName());
+		 }
+			 
 		 
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
