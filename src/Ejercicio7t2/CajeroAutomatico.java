@@ -25,8 +25,8 @@ class Operacion extends Thread{
 	
 	//Variable de saldo
 	int sueldo ;
-	//Creamos el Semaforo con valor en 0
-	Semaphore s = new Semaphore (0);
+	//Creamos el Semaforo con valor en 1
+	Semaphore s = new Semaphore (1);
 	
 	//Constructor
 	public Operacion (int sueldo) {
@@ -54,7 +54,7 @@ class Operacion extends Thread{
 	
 	//Funcion de ingresar
 	public int ingresar (int cantidad) throws InterruptedException  {
-		s.acquire(0);
+		s.acquire();
 		cantidad = cantidad + (int)(Math.random()*300);;
 		s.release();
 		return cantidad;
@@ -62,7 +62,7 @@ class Operacion extends Thread{
 	
 	//Funcion de retirar
 	public int retirar (int cantidad) throws InterruptedException {
-		s.acquire(0);
+		s.acquire();
 		cantidad = cantidad - (int)(Math.random()*300);
 		s.release();
 		return cantidad;
