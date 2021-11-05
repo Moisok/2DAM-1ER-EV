@@ -1,8 +1,5 @@
 package Ejercicio7t2;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.Semaphore;
 
 public class CajeroAutomatico {
@@ -20,13 +17,11 @@ public class CajeroAutomatico {
 			hilo.start();
 			
 			hilo2.start();
-
 	}
-
 }
 
 //Clase Operacion
-class Operacion implements Runnable{
+class Operacion extends Thread{
 	
 	//Variable de saldo
 	int sueldo ;
@@ -44,9 +39,9 @@ class Operacion implements Runnable{
 	 try {
 		 for (int i=0;i<10;i++) {
 			 sueldo = ingresar(sueldo);
-			 System.out.println(sueldo + " [INGRESO] " + s.availablePermits() + " " + Thread.currentThread().getName());
+			 System.out.println("Hilo " +  Thread.currentThread().getName() + " : " + sueldo + " [INGRESO] ");
 			 sueldo = retirar(sueldo);
-			 System.out.println(sueldo + " [RETIRADA] " + s.availablePermits() + " " + Thread.currentThread().getName());
+			 System.out.println("Hilo " +  Thread.currentThread().getName() + " : " + sueldo + " [RETIRADA] ");
 		 }
 			 
 		 
