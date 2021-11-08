@@ -9,30 +9,27 @@ public class CajeroAutomaticoT2 {
 	
 	//Clase main
 	public static void main (String [] args) {
-		//Invocamos a la clase temporizador
-		Timer time=new Timer();					
-	    MyTask task=new MyTask();					
-	    time.schedule(task, 0,1000);
+		int sueldo=(int)(Math.random()*1+1200);
+		operatividad operaciones = new operatividad (sueldo);
+		
+		
+		for (int i=0;i<5;i++) {
+			new Ingresar(operaciones).start();
+			new Retirar(operaciones).start();
+		}
+		
 	}
 	
 }	
 
-	//Clase temporizador
-		class MyTask extends TimerTask{
-			//Variable donde generamos el sueldo
-			int sueldo=(int)(Math.random()*1200);
-			//Ahora llamamos a la clase Operatividad
-			operatividad operaciones = new operatividad (sueldo);
-			  public void run(){							
-				new Ingresar(operaciones).start();
-				new Retirar(operaciones).start();	
-			  }
-		}
-
-
 	//Clase para operar
 		class operatividad{
+			private int dinero;
 			private int sueldo = 0;
+			private int total = 0;
+			//Semaforo
+			Semaphore semaforo = new Semaphore (1);
+
 			//Constructor
 			operatividad(int sueldo){
 				this.sueldo = sueldo;
@@ -43,16 +40,49 @@ public class CajeroAutomaticoT2 {
 				return sueldo;
 			}
 			
+			//Getter
+			public int getDinero() {
+				return dinero;
+			}
+			
 			//Setter
 			public void setSueldo(int sueldo) {
 				this.sueldo = sueldo;
 			}
 
 			//Clase donde iremos devolviendo el sueldo
-			int generarAleatorio(){
-				int dinero=(int)(Math.random()*1200);
-				sueldo = sueldo + dinero;
-				return sueldo;
+			int ingresarDinero() throws InterruptedException{
+				semaforo.acquire();
+				//Seccion critica
+				System.out.println("[INGRESO]:" + " SALDO RESTANTE: " + sueldo + " " + Thread.currentThread().getName());
+				dinero = (int)(Math.random()*1200);
+				System.out.println("[INGRESO]:" + " INGRESO: " + dinero + " " + Thread.currentThread().getName());
+				total = sueldo + dinero;
+				System.out.println("[INGRESO]:" + " TOTAL:" + total + " " + Thread.currentThread().getName());
+				sueldo = total;
+				if (sueldo < 0) {
+					System.err.println("[ATENCION SALDO NEGATIVO]: " + sueldo);
+				}
+				//Liberamos el semaforo
+				semaforo.release();
+				return total;
+			}
+			
+			int retirarDinero() throws InterruptedException{
+				semaforo.acquire();
+				//Seccion critica
+				System.out.println("[RETIRADA]:" + " SALDO RESTANTE: " + sueldo + " " + Thread.currentThread().getName());
+				dinero = (int)(Math.random()*1200);
+				System.out.println("[RETIRADA]:" + " RETIRADA: " + dinero + " " + Thread.currentThread().getName());
+				total = sueldo - dinero;
+				System.out.println("[RETIRADA]:" + " TOTAL:" + total + " " + Thread.currentThread().getName());
+				sueldo = total;
+				if (sueldo < 0) {
+					System.err.println("[ATENCION SALDO NEGATIVO]: " + sueldo);
+				}
+				//Liberamos el semaforo
+				semaforo.release();
+				return total;
 			}
 		}
 	
@@ -60,8 +90,6 @@ public class CajeroAutomaticoT2 {
 		
 	//Clase de ingresar [HILO1]
 	class Ingresar extends Thread{
-		//Creamos el Semaforo con valor en 1
-		Semaphore s = new Semaphore (1);
 		//Creamos el objeto operatividad
 		operatividad Operaciones;
 		//Constructor donde pasaremos la clase de operaciones
@@ -70,34 +98,18 @@ public class CajeroAutomaticoT2 {
 		}
 		@Override
 		public void run() {
-			try {
-				s.acquire();
-				int saldo = Operaciones.getSueldo();
-				System.out.println(Thread.currentThread().getName() + " SALDO RESTANTE: " + Operaciones.getSueldo());
-				int ganancias = Operaciones.generarAleatorio();
-				System.out.println(Thread.currentThread().getName() + " INGRESO: " + ganancias);
-				int suma = saldo + ganancias;
-				if (suma < 0) {
-					System.err.println(Thread.currentThread().getName() + " TOTAL:" + suma + " [SALDO NEGATIVO]");
+				try {
+					Operaciones.ingresarDinero();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				else {
-					System.out.println(Thread.currentThread().getName() + " TOTAL:" + suma);
-				}
-				s.release();
-				Operaciones.setSueldo(suma);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 		}
 	}
 	
 	
 	//Clase de retirar [HILO2]
 	class Retirar extends Thread{
-		//Creamos el Semaforo con valor en 1
-		Semaphore s = new Semaphore (1);
 		//Creamos el objeto operatividad
 		operatividad Operaciones;
 		//Constructor donde pasaremos la clase de operaciones
@@ -106,28 +118,13 @@ public class CajeroAutomaticoT2 {
 		}
 		@Override
 		public void run() {
-			try {
-				s.acquire();
-				int saldo = Operaciones.getSueldo();
-				System.out.println(Thread.currentThread().getName() + " SALDO RESTANTE: " + Operaciones.getSueldo());
-				int retirada = Operaciones.generarAleatorio();
-				System.out.println(Thread.currentThread().getName() + " RETIRADA: " + retirada);
-				int resta = saldo - retirada;
-				if (resta < 0) {
-					System.err.println(Thread.currentThread().getName() + " TOTAL:" + resta + " [SALDO NEGATIVO]");
+				try {
+					Operaciones.retirarDinero();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				else {
-					System.out.println(Thread.currentThread().getName() + " TOTAL:" + resta);
-				}
-				s.release();
-				Operaciones.setSueldo(resta);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		
+		}	
 }
 	
 
