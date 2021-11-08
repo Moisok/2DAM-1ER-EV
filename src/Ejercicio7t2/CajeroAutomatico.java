@@ -14,9 +14,9 @@ public class CajeroAutomatico {
 			
 			Thread hilo2 = new Thread(operaciones);
 			
-			hilo.start();
+			hilo.run();
 			
-			hilo2.start();
+			hilo2.run();
 	}
 }
 
@@ -75,4 +75,5 @@ class Operacion extends Thread{
 	}
 }
 
+//Hay que hacer una clase retirar y otra ingresar que extienden de thread, en la clase operacion no hay run
 
