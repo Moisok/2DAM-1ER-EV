@@ -1,7 +1,5 @@
 package Ejercicio9t2;
 
-
-
 //Ejercicio 9 creado por Moises Sepulveda Segarra
 
 public class Ejercicio_9t2 {

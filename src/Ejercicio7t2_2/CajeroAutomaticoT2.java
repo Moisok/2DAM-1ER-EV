@@ -1,21 +1,26 @@
 package Ejercicio7t2_2;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
 public class CajeroAutomaticoT2 {
 	
 	//Clase main
 	public static void main (String [] args) {
+		
+		boolean operacion = true;
+		
 		int sueldo=(int)(Math.random()*1+1200);
+		
 		operatividad operaciones = new operatividad (sueldo);
 		
+		//Creamos los objetos
+		Ingresar ingresos = new Ingresar (operaciones);
+		Retirar retiradas = new Retirar (operaciones);
 		
-		for (int i=0;i<5;i++) {
-			new Ingresar(operaciones).start();
-			new Retirar(operaciones).start();
+		//Bucle
+		while (operacion) {
+			ingresos.run();
+			retiradas.run();
 		}
 		
 	}
@@ -35,21 +40,6 @@ public class CajeroAutomaticoT2 {
 				this.sueldo = sueldo;
 			}
 			
-			//Getter
-			public int getSueldo() {
-				return sueldo;
-			}
-			
-			//Getter
-			public int getDinero() {
-				return dinero;
-			}
-			
-			//Setter
-			public void setSueldo(int sueldo) {
-				this.sueldo = sueldo;
-			}
-
 			//Clase donde iremos devolviendo el sueldo
 			int ingresarDinero() throws InterruptedException{
 				semaforo.acquire();
@@ -96,10 +86,14 @@ public class CajeroAutomaticoT2 {
 		Ingresar (operatividad Operaciones){
 			this.Operaciones = Operaciones;
 		}
+		//numero aleatorio
+		int espera;
 		@Override
 		public void run() {
 				try {
 					Operaciones.ingresarDinero();
+					espera = (int)(Math.random()*5000);
+					Thread.sleep(espera);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -116,10 +110,15 @@ public class CajeroAutomaticoT2 {
 		Retirar (operatividad Operaciones){
 			this.Operaciones = Operaciones;
 		}
+		//numero aleatorio
+		int espera;
+		//ponemos nombre al hilo
 		@Override
 		public void run() {
 				try {
 					Operaciones.retirarDinero();
+					espera = (int)(Math.random()*5000);
+					Thread.sleep(espera);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

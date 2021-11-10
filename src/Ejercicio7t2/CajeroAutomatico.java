@@ -9,7 +9,7 @@ public class CajeroAutomatico {
 			int sueldo = 1800;
 		
 			Operacion operaciones = new Operacion(sueldo);
-
+			
 			Thread hilo = new Thread(operaciones);
 			
 			Thread hilo2 = new Thread(operaciones);
