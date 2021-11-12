@@ -27,7 +27,7 @@ public class Main {
 
 	 
 	//Metodo para los escritores
-	 public  void listarEscritor(int random) throws InterruptedException{
+	 public void listarEscritor(int random) throws InterruptedException{
 		ArrayList <String> escritores = new ArrayList <String>();
 		escritores.add("Juan Garcia");
 		escritores.add("Alcazar Buenafuente");
@@ -44,7 +44,7 @@ public class Main {
 		contador++;
 		componentes.add(escritores.get(random2));
 		System.out.println("[ESCRITOR]: " + " EMPIEZA " + Thread.currentThread().getName());
-		System.out.println("[ESCRITOR]: " + "Soy " + componentes.get(componentes.size()-1) + " y es: " + LocalDateTime.now() + " [POSICION]:" + contador + " " + Thread.currentThread().getName());
+		System.out.println("[ESCRITOR]: " + "Soy " + componentes.get(0) + " y es: " + LocalDateTime.now() + " " +  Thread.currentThread().getName());
 		semaforo1.release();
 		System.out.println("[ESCRITOR]: " + "ACABA " + Thread.currentThread().getName());
 	 }
@@ -65,9 +65,10 @@ public class Main {
 		semaforo1.acquire();
 		int random2 = random;
 		contador++;
+		System.out.println("[LECTOR]: " + componentes.remove(0) + " [HA SIDO ELIMINADO DEL ARRAY] " + Thread.currentThread().getName());
 		componentes.add(lectores.get(random2));
 		System.out.println( "[LECTOR]: " + "EMPIEZA " + Thread.currentThread().getName());
-		System.out.println( "[LECTOR]: " +  "Soy " + componentes.get(componentes.size()-1) + " y estoy leyendo un libro " + "  [POSICION]:" + contador + " "  + Thread.currentThread().getName());
+		System.out.println( "[LECTOR]: " +  "Soy " + componentes.get(0) + " y estoy leyendo un libro " +  Thread.currentThread().getName());
 		semaforo1.release();
 		System.out.println( "[LECTOR]: " +  "ACABA " + Thread.currentThread().getName());
 			}
