@@ -18,10 +18,9 @@ public class CajeroAutomaticoT2 {
 		Retirar retiradas = new Retirar (operaciones);
 		
 		//Bucle
-		while (operacion) {
-			ingresos.run();
-			retiradas.run();
-		}
+		ingresos.start();
+		retiradas.start();
+		
 		
 	}
 	
@@ -80,6 +79,7 @@ public class CajeroAutomaticoT2 {
 		
 	//Clase de ingresar [HILO1]
 	class Ingresar extends Thread{
+		boolean ingresar = true;
 		//Creamos el objeto operatividad
 		operatividad Operaciones;
 		//Constructor donde pasaremos la clase de operaciones
@@ -91,9 +91,12 @@ public class CajeroAutomaticoT2 {
 		@Override
 		public void run() {
 				try {
-					Operaciones.ingresarDinero();
-					espera = (int)(Math.random()*5000);
-					Thread.sleep(espera);
+					while(ingresar) {
+						Operaciones.ingresarDinero();
+						espera = (int)(Math.random()*5000);
+						Thread.sleep(espera);
+					}
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -104,6 +107,7 @@ public class CajeroAutomaticoT2 {
 	
 	//Clase de retirar [HILO2]
 	class Retirar extends Thread{
+		boolean retirar = true;
 		//Creamos el objeto operatividad
 		operatividad Operaciones;
 		//Constructor donde pasaremos la clase de operaciones
@@ -116,9 +120,12 @@ public class CajeroAutomaticoT2 {
 		@Override
 		public void run() {
 				try {
-					Operaciones.retirarDinero();
-					espera = (int)(Math.random()*5000);
-					Thread.sleep(espera);
+					while(retirar) {
+						Operaciones.retirarDinero();
+						espera = (int)(Math.random()*5000);
+						Thread.sleep(espera);
+					}
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
