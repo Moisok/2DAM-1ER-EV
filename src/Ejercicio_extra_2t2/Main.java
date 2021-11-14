@@ -11,21 +11,18 @@ public class Main {
 		AccesRW accesrw = new AccesRW();
 		new escritor(accesrw).start();
 		new lector(accesrw).start();
+		
 	}
-
 }
 
 //Clase donde aremos el array
  class AccesRW {
 	 //Booleano
 	 boolean comprueba = false;
-	 int contador;
 	 //ArrayList
 	 ArrayList <String> componentes = new ArrayList <String>();
-	 //Semaforos
-	 Semaphore semaforo1 = new Semaphore(1);
-
-	 
+	 //Semaforo escritores
+	 Semaphore semaforo = new Semaphore (1);
 	//Metodo para los escritores
 	 public void listarEscritor(int random) throws InterruptedException{
 		ArrayList <String> escritores = new ArrayList <String>();
@@ -39,14 +36,12 @@ public class Main {
 		escritores.add("Raul Fas");
 		escritores.add("David Avila");
 		escritores.add("Sergio Maldonado");
-		semaforo1.acquire();
+		semaforo.acquire();
 		int random2 = random;
-		contador++;
-		componentes.add(escritores.get(random2));
-		System.out.println("[ESCRITOR]: " + " EMPIEZA " + Thread.currentThread().getName());
+		componentes.add(0,escritores.get(random2));
 		System.out.println("[ESCRITOR]: " + "Soy " + componentes.get(0) + " y es: " + LocalDateTime.now() + " " +  Thread.currentThread().getName());
-		semaforo1.release();
-		System.out.println("[ESCRITOR]: " + "ACABA " + Thread.currentThread().getName());
+		comprueba=true;
+		semaforo.release();
 	 }
 	 
 	 //Metodo para los lectores SOLO ENTRAN SI HAY ESCRITORES CON DATOS
@@ -62,21 +57,19 @@ public class Main {
 		lectores.add("Lourder Maldonado");
 		lectores.add("Cesar perez");
 		lectores.add("Paco Ramirez");
-		semaforo1.acquire();
-		int random2 = random;
-		contador++;
-		System.out.println("[LECTOR]: " + componentes.remove(0) + " [HA SIDO ELIMINADO DEL ARRAY] " + Thread.currentThread().getName());
-		componentes.add(lectores.get(random2));
-		System.out.println( "[LECTOR]: " + "EMPIEZA " + Thread.currentThread().getName());
-		System.out.println( "[LECTOR]: " +  "Soy " + componentes.get(0) + " y estoy leyendo un libro " +  Thread.currentThread().getName());
-		semaforo1.release();
-		System.out.println( "[LECTOR]: " +  "ACABA " + Thread.currentThread().getName());
+		semaforo.acquire();
+		if (comprueba) {
+			int random2 = random;
+			componentes.add(1,lectores.get(random2));
+			System.out.println( "[LECTOR]: " +  "Soy " + componentes.get(1) + " y estoy leyendo un libro de :"  +  componentes.get(0) +  Thread.currentThread().getName());
+			comprueba = false;
+			componentes.remove(0);
+		}
+		semaforo.release();
+		
 			}
 		}
 	 
-	 
-
- 
 //Clase para los escritores
  class escritor extends Thread{
 	 //variables
@@ -112,6 +105,7 @@ class lector extends Thread{
 	 int espera;
 	 int random;
 	 boolean entrada = true;
+	 Semaphore semaforo = new Semaphore(1);
 	 //Llamamos a la clase Acces
 	 AccesRW accesRW;
 	 //Creamos el constructor
@@ -123,19 +117,19 @@ class lector extends Thread{
 	public void run() {
 		 	try {
 		 		while (entrada) {
-		 		random=(int)(Math.random()*9);
-		 		accesRW.listarLector(random);
-				espera = (int)(Math.random()*5000);
-				Thread.sleep(espera);
-		 		}
+		 			semaforo.acquire();
+		 			random=(int)(Math.random()*9);
+			 		accesRW.listarLector(random);
+					espera = (int)(Math.random()*5000);
+					Thread.sleep(espera);
+					semaforo.release();		
+		 	}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	 }
 }
-
-
 
 /*String escritor1 = "Juan Garciae";
 String escritor2 = "Alcazar Buenafuente";
