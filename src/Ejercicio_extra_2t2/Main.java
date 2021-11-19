@@ -130,26 +130,3 @@ class lector extends Thread{
 		}
 	 }
 }
-
-/*String escritor1 = "Juan Garciae";
-String escritor2 = "Alcazar Buenafuente";
-String escritor3 = "Ramon Romero";
-String escritor4 = "Jaime Ubeda";
-String escritor5 = "Moises Schwarzenegger";
-String escritor6 = "Pablo Jerez";
-String escritor7 = "Daniel dandan";
-String escritor8 = "Raul Fas";
-String escritor9 = "David Avila";
-String escritor10 = "Sergio Maldonado";*/
-
-/*
-/*String lector1 = "Fatima";
-String lector2 = "David";
-String lector3 = "Camilo";
-String lector4 = "Maria";
-String lector5 = "Eva";
-String lector6 = "Joaquin";
-String lector7 = "Pablo";
-String lector8 = "Marta";
-String lector9 = "Jorge";
-String lector10 = "Jose";*/
