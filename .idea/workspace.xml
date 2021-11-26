@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a46302e-8876-43b0-a69d-b154aee3ee45" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/module-info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EjercicioExtra1T2/FarmaciaCartel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EjercicioExtra1T2/FarmaciaCartel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/bin/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReEjercicioExtra/Extra_Semaforos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReEjercicioExtra/Extra_Semaforos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

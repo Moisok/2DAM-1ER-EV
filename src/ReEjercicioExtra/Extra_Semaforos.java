@@ -24,7 +24,6 @@ public class Extra_Semaforos {
 
 //Clase Acces RW donde tendremos el Array y los metodos
 class AccesRW {
-	
 	//Creamos el Array De String
 	private ArrayList<String> Componentes = new ArrayList<String>();
 	//Creamos los dos semaforos, uno con el contador a 1 y el de 
@@ -70,6 +69,7 @@ class AccesRW {
 			sem_lec.acquire();
 			System.out.println(lee + " - Elementos restantes: " + sem_lec.availablePermits());
 			//Bloqueamos semaforo de escritores
+			sem_acc.acquire();
 			System.out.println(lee + " lee: " + this.Componentes.get(0));
 			this.Componentes.remove(0);
 			//Liberamos semaforo de acceso
