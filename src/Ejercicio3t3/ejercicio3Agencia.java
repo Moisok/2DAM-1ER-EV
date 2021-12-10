@@ -35,14 +35,18 @@ class viajar {
 	//Comprar asientos
 	public void asientosLibres (int cliente, int plazas) {
 		
+		this.cliente = cliente;
+		
 		System.out.println("El cliente:" + cliente + " intenta comprar: " + plazas + " asientos");
 		
 		if (asientos != 0 || asientos < 0) {
 			
-			System.out.println("Quedan asientos libres");	
+			System.out.println("Quedan asientos libres");
+			
+			pagar = true;
 		}
 		
-		else if (asientos <= 0) {
+		else if (asientos == 0 || asientos < 0) {
 			
 			System.out.println("No quedan asientos libres");
 		}
@@ -51,9 +55,21 @@ class viajar {
 	
 	//Pagar asientos
 	public void asientosPagar (int plazas) {
-			System.out.println("El cliente ha comprado " + plazas + " plazas");
-			System.out.println("El cliente ha pagado los asientos");
-			asientos = asientos - plazas;
+			if (pagar) {
+				try {
+					Thread.sleep(3000);
+					System.out.println("El cliente: " + cliente  +" ha comprado " + plazas + " plazas");
+					System.out.println("El cliente ha pagado los asientos");
+					this.asientos = asientos - plazas;
+					pagar = false;
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else {
+				System.out.println("El cliente no ha podido pagar los asientos por que no hay asientos libres");
+			}
 	}
 	
 	//Reservar asientos
@@ -87,12 +103,6 @@ class billetes extends Thread {
 		compraBilletes=(int)(Math.random()*(5 - 1)+1);
 		
 		Viajes.asientosLibres(cliente,compraBilletes);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		Viajes.asientosPagar(compraBilletes);
 		Viajes.asientosReserva(compraBilletes);
 		
