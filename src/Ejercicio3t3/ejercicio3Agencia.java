@@ -10,9 +10,11 @@ public class ejercicio3Agencia {
 		
 		billetes compra;
 		
-		for (int i=0;i<3;i++) {
-			new billetes(viaje,i).start();
-		}
+		
+		new billetes(viaje,1).start();
+		new billetes(viaje,2).start();
+		new billetes(viaje,3).start();
+		
 		
 
 	}
@@ -35,12 +37,9 @@ class viajar {
 		
 		System.out.println("El cliente:" + cliente + " intenta comprar: " + plazas + " asientos");
 		
-		if (asientos <= plazas && asientos != 0) {
+		if (asientos != 0 || asientos < 0) {
 			
-			System.out.println("Quedan asientos libres");
-			
-			pagar = true;
-			
+			System.out.println("Quedan asientos libres");	
 		}
 		
 		else if (asientos <= 0) {
@@ -52,12 +51,9 @@ class viajar {
 	
 	//Pagar asientos
 	public void asientosPagar (int plazas) {
-		if (pagar == true) {
 			System.out.println("El cliente ha comprado " + plazas + " plazas");
-			asientos = asientos - plazas;
 			System.out.println("El cliente ha pagado los asientos");
-			pagar = false;
-		}
+			asientos = asientos - plazas;
 	}
 	
 	//Reservar asientos
