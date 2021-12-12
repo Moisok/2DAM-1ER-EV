@@ -4,16 +4,24 @@ package Ejercicio3t3;
 
 public class ejercicio3Agencia {
 
-	public static void main (String [] args) {
+	public static void main (String [] args) throws InterruptedException {
 		
 		viajar viaje = new viajar();
 		
-		billetes compra;
+		billetes compra = new billetes (viaje,1);
+		billetes compra2 = new billetes (viaje,2); ;
+		billetes compra3 = new billetes (viaje,3);;
+		
+		compra.start();
+		//compra.join();
+		
+		compra2.start();
+		//compra2.join();
+		
+		compra3.start();
+		//compra3.join();
 		
 		
-		new billetes(viaje,1).start();
-		new billetes(viaje,2).start();
-		new billetes(viaje,3).start();
 		
 		
 
@@ -24,6 +32,8 @@ public class ejercicio3Agencia {
 //Clase metodo para reservar y pagar el viaje
 class viajar {
 	
+	int comprobacion;
+	
 	int cliente;
 	
 	int plazas;
@@ -33,49 +43,59 @@ class viajar {
 	int asientos = 5;
 	
 	//Comprar asientos
-	public void asientosLibres (int cliente, int plazas) {
+	public synchronized void asientosLibres (int cliente, int plazas) {
 		
 		this.cliente = cliente;
 		
-		System.out.println("El cliente:" + cliente + " intenta comprar: " + plazas + " asientos");
+		System.out.println("El cliente:" + cliente + " intenta comprar: " + plazas + " plaza/s");
 		
-		if (asientos != 0 || asientos < 0) {
+		this.comprobacion = asientos;
+		
+		if (comprobacion - plazas < 0) {
+			System.out.println("No hay suficientes plazas");
 			
-			System.out.println("Quedan asientos libres");
-			
-			pagar = true;
 		}
 		
-		else if (asientos == 0 || asientos < 0) {
-			
-			System.out.println("No quedan asientos libres");
+		else {
+			System.out.println("Quedan plazas libres");
+			pagar = true;
 		}
 		
 	}
 	
 	//Pagar asientos
-	public void asientosPagar (int plazas) {
+	public synchronized void asientosPagar (int plazas) {
+		try {
+			Thread.sleep(3000);
 			if (pagar) {
-				try {
-					Thread.sleep(3000);
-					System.out.println("El cliente: " + cliente  +" ha comprado " + plazas + " plazas");
-					System.out.println("El cliente ha pagado los asientos");
-					this.asientos = asientos - plazas;
-					pagar = false;
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+				System.out.println("El cliente: " + cliente  +" ha comprado " + plazas + " plazas");
+				System.out.println("El cliente ha pagado los asientos");
+				this.asientos = asientos - plazas;
+				pagar=false;
+			// TODO Auto-generated catch block
+		}
 			else {
-				System.out.println("El cliente no ha podido pagar los asientos por que no hay asientos libres");
+				System.err.println("El cliente no ha pagado las plazas por que no hay suficientes");
 			}
+		} catch (InterruptedException e) {
+			System.err.println("No se ha podido realizar la operacion");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+			
 	}
 	
 	//Reservar asientos
-	public void asientosReserva(int plazas) {
-		System.out.println("Quedan: " + asientos + " libres");
-		System.out.println("Se han comprado: " + plazas + " plazas");
+	public synchronized void asientosReserva(int plazas) {
+		if (asientos <= 0) {
+			System.out.println("No quedan plazas libres");
+			System.out.println(" ");
+		}
+		else {
+			System.out.println("Quedan: " + asientos + " libres");
+			System.out.println(" ");
+		}
+		
 	}
 	
 }
@@ -99,13 +119,10 @@ class billetes extends Thread {
 	
 	@Override
 	public void run() {
-		
 		compraBilletes=(int)(Math.random()*(5 - 1)+1);
-		
 		Viajes.asientosLibres(cliente,compraBilletes);
 		Viajes.asientosPagar(compraBilletes);
 		Viajes.asientosReserva(compraBilletes);
-		
 	}
 	
 }
