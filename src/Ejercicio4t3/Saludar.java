@@ -27,7 +27,6 @@ class saludarydespedirse {
 	void saludar () {
 		System.out.println("Hola");
 		despedida = true;
-		notify();
 		System.out.println(despedida);
 	}
 	
@@ -35,11 +34,12 @@ class saludarydespedirse {
 		if (despedida = true) {
 			try {
 				wait();
-				System.out.println("Adios");
-				despedida = false;
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				e.printStackTrace();	
 			}
+			notify();
+			System.out.println("Adios");
+			despedida = false;
 			
 		}
 	}
