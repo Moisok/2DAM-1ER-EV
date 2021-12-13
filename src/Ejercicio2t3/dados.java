@@ -1,3 +1,5 @@
+package Ejercicio2t3;
+
 public class dados {
 
 	public static void main(String[] args) throws InterruptedException {

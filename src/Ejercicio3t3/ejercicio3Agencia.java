@@ -21,10 +21,6 @@ public class ejercicio3Agencia {
 		compra3.start();
 		//compra3.join();
 		
-		
-		
-		
-
 	}
 	
 }
