@@ -31,14 +31,14 @@ class saludarydespedirse {
 	}
 	
 	synchronized void despedirse () {
-		if (!despedida) {
+		while (!despedida) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();	
 			}
 		}
-		else {
+		
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -47,7 +47,7 @@ class saludarydespedirse {
 			}
 			System.out.println("Adios");
 			despedida = false;
-		}
+		
 	}
 }
 

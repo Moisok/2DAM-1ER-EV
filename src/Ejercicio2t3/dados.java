@@ -46,7 +46,6 @@ class resultadosDados {
 	public int getTotal() {
 		return total;
 	}
-	
 }
 
 //Clase para los dados
