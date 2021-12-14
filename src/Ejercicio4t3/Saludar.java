@@ -24,27 +24,31 @@ class saludarydespedirse {
 	
 	boolean despedida = false;
 	
-	void saludar () {
+	synchronized void saludar () {
 		System.out.println("Hola");
+		notify();
 		despedida = true;
-		System.out.println(despedida);
 	}
 	
 	synchronized void despedirse () {
-		if (despedida = true) {
+		if (!despedida) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();	
 			}
-			notify();
+		}
+		else {
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("Adios");
 			despedida = false;
-			
 		}
 	}
-	
-	
 }
 
 
