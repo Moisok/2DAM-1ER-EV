@@ -1,7 +1,7 @@
 package Ejercicio4t3;
 
 //Clase principal
-public class Saludar {
+public class Tuputamadre {
 
 	public static void main(String[] args) {
 		
