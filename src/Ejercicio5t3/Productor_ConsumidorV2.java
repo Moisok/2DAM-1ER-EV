@@ -3,19 +3,16 @@ package Ejercicio5t3;
 import java.util.ArrayList;
 
 //Clase main
-public class Productor_Consumidor {
+public class Productor_ConsumidorV2 {
 
 	public static void main(String[] args) {
 		
 		AccesRW accesrw = new AccesRW();
 		
-		
-		
 		for (int i=0;i<49;i++) {
 			new producir(accesrw,i).start();
 			new consumir(accesrw,i).start();
 		}
-
 	}
 }
 
@@ -41,9 +38,9 @@ class AccesRW {
 	public synchronized void producir (int posicion) {
 		
 		//Como sin 5 elementos cuando esta lleno
-		if (elementos.size() >= 5 ) {
+		if (elementos.size() == 5 ) {
 			blo_prod = false;
-			System.out.println("[BLOQUEO PRODUCTOR]: Limpiando Array");
+			System.out.println("Limpiando Array");
 			elementos.clear();
 			if (blo_prod == false) {
 				try {
@@ -70,9 +67,9 @@ class AccesRW {
 			
 			aleatorio = (int)(Math.random()*(50 - 1)+1);
 			
-			System.out.println("Productor: " + aleatorio + " produce algo");
+			System.out.println("Productor produce objeto: " + aleatorio);
 			
-			productor = "productor " + aleatorio;	
+			productor = "producto " + aleatorio;	
 			
 			elementos.add(productor);
 			
@@ -81,16 +78,18 @@ class AccesRW {
 			liberar = true;
 			
 			blo_prod = false;
+			
+			}	
 		}	
-	}	
-}
+	}
+
 		
 
 	//Consumidor
 	public synchronized void consumir (int posicion) {
 		
 		if (elementos.isEmpty()) {
-			System.out.println("[BLOQUEO CONSUMIDOR]: Array Vacio \n");
+			System.out.println("Array Vacio \n");
 			blo_prod = true;
 			
 		}
@@ -104,18 +103,23 @@ class AccesRW {
 					e.printStackTrace();	
 				}
 			}
-				
-				aleatorio = (int)(Math.random()*(50 - 1)+1);
-				
-				System.out.println("Consumidor: " + aleatorio + " consume producto de: " + elementos.get(elementos.size()-1) + "\n");
-
-				consumidor = " " + aleatorio;
-				
-				elementos.add(consumidor);
-				
-				liberar = false;
-				
-				blo_prod = true;
+						aleatorio = (int)(Math.random()*(4 - 1)+1);
+					
+						if (aleatorio == elementos.size()-1) {
+							
+							System.out.println("Consumidor consume " + elementos.get(aleatorio) + "\n");
+						
+							elementos.remove(aleatorio);
+						
+							liberar = false;
+							
+							blo_prod = true;	
+							
+						}else {
+							liberar = false;
+							
+							blo_prod = true;	
+						}		
 		}
 		
 	}
