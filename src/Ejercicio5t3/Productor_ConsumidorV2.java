@@ -9,10 +9,14 @@ public class Productor_ConsumidorV2 {
 		
 		AccesRW accesrw = new AccesRW();
 		
-		for (int i=0;i<49;i++) {
-			new producir(accesrw,i).start();
-			new consumir(accesrw,i).start();
-		}
+		producir produccion = new producir (accesrw);
+		
+		consumir consumicion = new consumir (accesrw);
+		
+		produccion.start();
+		
+		consumicion.start();
+		
 	}
 }
 
@@ -20,153 +24,101 @@ public class Productor_ConsumidorV2 {
 //Clase accesRW
 class AccesRW {
 	
-	ArrayList <String> elementos = new ArrayList <String>(); //Aray de 5
+	int random;
 	
-	private int aleatorio;
+	int random2;
 	
-	private boolean liberar = false;
+	ArrayList <Integer> productos = new ArrayList <Integer>(); //Aray de 5
 	
-	private boolean blo_prod = true;
+	private boolean lib_cons = false;
+	
+	private boolean lib_prod = true;
 	
 	
-	
-	String productor;
-	
-	String consumidor;
-	
-	//Productor
-	public synchronized void producir (int posicion) {
-		
-		//Como sin 5 elementos cuando esta lleno
-		if (elementos.size() == 5 ) {
-			blo_prod = false;
-			System.out.println("Limpiando Array");
-			elementos.clear();
-			if (blo_prod == false) {
-				try {
-					wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println("Array vaciado \n");
-				blo_prod = true;
-			}
-			
+	synchronized void producir () throws InterruptedException {
+		while (!lib_prod) {
+			wait();
 		}
-		
-		else {
-			
-		while (blo_prod) {
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			aleatorio = (int)(Math.random()*(50 - 1)+1);
-			
-			System.out.println("Productor produce objeto: " + aleatorio);
-			
-			productor = "producto " + aleatorio;	
-			
-			elementos.add(productor);
-			
+		if (productos.size()==5) {
+			System.out.println("Stock Lleno produccion bloqueada");
 			notify();
-			
-			liberar = true;
-			
-			blo_prod = false;
-			
-			}	
+			lib_prod = false;
+			lib_cons = true;
+			Thread.sleep(3000);
+		}else {
+			random = (int)(Math.random()*(50 - 1)+1);
+			System.out.println("Productor produce [" + random + "]");
+			productos.add(random);
+			notify();
+			lib_prod = false;
+			lib_cons = true;
+			Thread.sleep(3000);
 		}	
 	}
-
-		
-
-	//Consumidor
-	public synchronized void consumir (int posicion) {
-		
-		if (elementos.isEmpty()) {
-			System.out.println("Array Vacio \n");
-			blo_prod = true;
-			
+	
+	synchronized void consumir () throws InterruptedException {
+		while (!lib_cons) {
+			wait();
 		}
-		
-		else {
-			while (!liberar) {	
-				try {
-					wait();
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();	
-				}
+		if (productos.size()==0) {
+			System.out.println("Stock vacio, no hay nada que comprar");
+			notify();
+			lib_prod=true;
+			lib_cons=false;
+		}else {
+				System.out.println("Consumidor consume producto ["+productos.get(productos.size()-1)+"]\n");
+				productos.remove(productos.size()-1);
+				notify();
+				lib_prod=true;
+				lib_cons=false;
 			}
-						aleatorio = (int)(Math.random()*(4 - 1)+1);
-					
-						if (aleatorio == elementos.size()-1) {
-							
-							System.out.println("Consumidor consume " + elementos.get(aleatorio) + "\n");
-						
-							elementos.remove(aleatorio);
-						
-							liberar = false;
-							
-							blo_prod = true;	
-							
-						}else {
-							liberar = false;
-							
-							blo_prod = true;	
-						}		
 		}
-		
 	}
-}
+	
+
+		
+
+	
 	
 	
 //Hilo productor
 class producir extends Thread {
-		
 		AccesRW accesrw;
-		
-		int posicion;
-		
 		//Constructor
-		producir (AccesRW accesrw, int posicion){
-			
+		producir (AccesRW accesrw){
 			this.accesrw = accesrw;
-			
-			this.posicion = posicion;
 		}
-		
 		//runable
 		@Override
 		public void run () {
-			accesrw.producir(posicion);
+			for (int i=0;i<49;i++) {
+				try {
+					accesrw.producir();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+			}	
 		}
-		
 	}
 
 //Hilo consumidor
 class consumir extends Thread {
-		
 		AccesRW accesrw;
-		
-		int posicion;
-		
 		//Constructor
-		consumir (AccesRW accesrw, int posicion){
-			
-			this.accesrw = accesrw;
-			
-			this.posicion = posicion;
+		consumir (AccesRW accesrw){
+			this.accesrw = accesrw;	
 		}
-		
 		//runable
 		@Override
 		public void run () {
-			accesrw.consumir(posicion);
+			for (int i=0;i<49;i++) {
+				try {
+					accesrw.consumir();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}

@@ -1,7 +1,7 @@
 package Ejercicio4t3;
 
 //Clase principal
-public class Tuputamadre {
+public class saludoss {
 
 	public static void main(String[] args) {
 		
@@ -28,6 +28,12 @@ class saludarydespedirse {
 		System.out.println("Hola");
 		notify();
 		despedida = true;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	synchronized void despedirse () {
@@ -38,13 +44,6 @@ class saludarydespedirse {
 				e.printStackTrace();	
 			}
 		}
-		
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			System.out.println("Adios");
 			despedida = false;
 		
@@ -63,7 +62,10 @@ class saludar extends Thread {
 	
 	@Override
 	public void run () {
-		syd.saludar();
+		for (int i=0;i<20;i++) {
+			syd.saludar();
+		}
+		
 	}
 	 
 }
@@ -79,7 +81,9 @@ class despedida extends Thread {
 	
 	@Override
 	public void run () {
-		syd.despedirse();
+		for (int i=0;i<20;i++) {
+			syd.despedirse();
+		}
 	}
 	 
 }
