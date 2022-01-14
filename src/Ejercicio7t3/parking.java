@@ -9,17 +9,11 @@ import java.util.ArrayList;
 public class parking {
 	
 	public static void main(String[]args) {
-		
 		accesRW parkings = new accesRW();
-		
-		hilo1 aparca = new hilo1(parkings);
-		
-		hilo2 salida = new hilo2(parkings);
-		
-		aparca.start();
-		
-		salida.start();
-		
+		for (int i=0;i<40;i++) {
+			new hilo1(parkings).start();
+			new hilo2(parkings).start();
+		}	
 	}
 }
 
@@ -60,15 +54,17 @@ class accesRW {
 					park = false;
 					lib_park = true;
 				}else {
+					coches = (int)(Math.random()*(40 - 1)+1);
+					System.out.println("Llega el coche con matricula ["+coches+"]");
+					tiempo = (int)(Math.random()*(30000 - 1000)+1000);
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(tiempo);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					coches = (int)(Math.random()*(40 - 1)+1);
 					libres--;
-					System.out.println("Llega el coche con matricula ["+coches+"] plazas libres ["+libres+"]");
+					System.out.println("El coche con matricula ["+coches+"] aparca, plazas libres: ["+libres+"]");
 					plazas.add(coches);
 					minutos--;
 					notify();
@@ -89,9 +85,8 @@ class accesRW {
 		}
 		abandonar = (int)(Math.random()*(5 - 1)+1);
 		if (abandonar == 4 || abandonar == 5 || abandonar == 6) {
-			tiempo = (int)(Math.random()*(30000 - 1000)+1000);
 			try {
-				Thread.sleep(tiempo);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -126,9 +121,7 @@ class hilo1 extends Thread {
 	}
 	@Override
 	public void run() {
-		for (int i=0;i<40;i++) {
 			accesrw.parking();
-		}
 	}
 }
 
@@ -140,9 +133,7 @@ class hilo2 extends Thread {
 	}
 	@Override
 	public void run() {
-		for (int i=0;i<40;i++) {
-			accesrw.salida_parking();;
-		}
+			accesrw.salida_parking();
 	}
 }
 
