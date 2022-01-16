@@ -60,7 +60,7 @@ class tiempo {
 					maxim = gtemp.get(i);
 				};
 		}
-		System.out.println(Thread.currentThread().getName() + " Ha encontrado de maximo " + maxim+"º");
+		System.out.println(Thread.currentThread().getName() + " Ha encontrado de maximo " + maxim+"º en " + " [RANGO " + minimo + " a " + maximo  +" ]");
 		minimo = minimo + 10;
 		maximo = maximo + 10;
 		if (maximo == 100) {
