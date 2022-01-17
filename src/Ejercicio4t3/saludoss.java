@@ -26,8 +26,8 @@ class saludarydespedirse {
 	
 	synchronized void saludar () {
 		System.out.println("Hola");
-		notify();
 		despedida = true;
+		notify();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
