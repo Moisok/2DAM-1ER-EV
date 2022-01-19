@@ -40,99 +40,91 @@ class accesRW {
 	//Metodo de aparcar (van llegando los coches)
 	
 	synchronized void parking () {
-		
+	
 			try {
-				
 				Thread.sleep(llegada=(int)(Math.random()*(60000 - 1000)+1000));
-				
 			}catch(InterruptedException e) {
-				
 				e.printStackTrace();
 				
 			}
 			
-			matricula=(int)(Math.random()*(9999 - 1111)+1111);
-			
-			if(libres <= 0) {
-				
-				System.out.println("Coche con matricula " + matricula + " esperando: Parking lleno" );
-				
-				cochesEsperando.add(matricula);
-				
-				sale = true;
-				
-				espera = true;
-				
-				notify();
-				
+			matricula=(int)(Math.random()*(40 - 1)+1);
+			if(libres == 0) {
+				try {
+					System.out.println("Coche con matricula " + matricula + " esperando: Parking lleno" );
+					cochesEsperando.add(matricula);
+					sale = true;
+					espera = true;	
+					notify();
+				}catch(Exception e) {
+					System.err.println("No se ha podido aparcar, array Lleno (Coche esperando)");
+					e.printStackTrace();
+				}
 			}else {
-				
-				if (espera) {
-					
-					libres--;
-					
-					System.out.println("Coche con matricula " + cochesEsperando.get(0) + ": entra al parking. Plazas libres " + libres);
-					
+				if (espera) {			
 					try {
-						
+						libres--;
+						System.out.println("Coche con matricula " + matricula + ": entra al parking. Plazas libres " + libres);	
+					}catch(Exception e) {
+						System.err.println("No se ha podido obetener la posicion del coche que espera en el array (coche esperando 2)");
+						e.printStackTrace();
+					}
+				
+					try {
 						Thread.sleep(aparcar=(int)(Math.random()*(30000-1000)+1000));
-						
 					} catch (InterruptedException e) {
-						
 						e.printStackTrace();
 					}
 					
-					cochesEsperando.remove(0);
-					
-					plazasLibres.add(matricula);
-					
-					sale = true;
-					
-					notify();
-					
-					if (cochesEsperando.size() < 0) {
+					try {
+						cochesEsperando.remove(0);
+						plazasLibres.add(matricula);
+						sale = true;                                                                                                   
+						notify();
 						
+					}catch(Exception e) {
+						System.err.println("N0 se ha podido eliminar el coche del array de espera (Coches espera borrar)");
+						e.printStackTrace();
+					}
+					
+					if (cochesEsperando.size() <= 0) {
 						espera = false;
 					}
 					
 				}else {
 					
-					libres--;
-					
-					System.out.println("Coche con matricula " + matricula + ": entra al parking. Plazas libres " + libres);
-					
 					try {
+						libres--;
+						System.out.println("Coche con matricula " + matricula + ": entra al parking. Plazas libres " + libres);
+						try {
+							
+							Thread.sleep(aparcar=(int)(Math.random()*(30000-1000)+1000));
+							
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						plazasLibres.add(matricula);
+						sale = true;
+						notify();
 						
-						Thread.sleep(aparcar=(int)(Math.random()*(30000-1000)+1000));
-						
-					} catch (InterruptedException e) {
-						
+					} catch(Exception e) {
+						System.err.println("No se ha podido añadir al array (Coche aparcando)");
 						e.printStackTrace();
-					}
-					
-					plazasLibres.add(matricula);
-					
-					sale = true;
-					
-					notify();
+						
+					}	
 				}
 			}
 	}
+	
 	//Metodo para salir;
 	synchronized void salida_parking () {
 		
 		while (!sale) {
-			
 			try {
-				
 				wait();
-				
 			} catch (InterruptedException e) {
-				
 				e.printStackTrace();
-				
 			}
-			
 		}
 		//Fin de comprobacion de condicion
 		
@@ -141,19 +133,21 @@ class accesRW {
 		matricula2 = (int)(Math.random()*(20-1)+1);
 		
 			if (matricula2 < plazasLibres.size()) {
-				
-				libres++;
-				
-				System.out.println("Coche con matricula " + plazasLibres.get(matricula2) + ": sale del parking plazas libres " + libres);
-				
-				plazasLibres.remove(matricula2);
-				
-				sale=false;
-				
+				try {
+					libres++;
+					
+					System.out.println("Coche con matricula " + plazasLibres.get(matricula2) + ": sale del parking plazas libres " + libres);
+					
+					plazasLibres.remove(matricula2);
+					
+					sale=false;
+				}catch(Exception e) {
+					System.err.println("No ha podido salir del parkin");
+					e.printStackTrace();
+				}
+					
 			}else {
-				
 				sale=false;
-				
 		}
 	}
 }
