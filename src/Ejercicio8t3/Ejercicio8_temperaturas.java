@@ -12,6 +12,10 @@ public class Ejercicio8_temperaturas {
 			temperaturas.temp();
 		}
 		
+		//Meterlo en un vector
+		// Trobar[] fils = new trobar[nfils];
+		//fils[i].start();
+		
 		for (int j=0;j<10;j++) {
 			search bus1 = new search (temperaturas);
 			bus1.start();
