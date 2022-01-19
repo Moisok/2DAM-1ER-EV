@@ -16,11 +16,13 @@ public class Ejercicio8_temperaturas {
 		// Trobar[] fils = new trobar[nfils];
 		//fils[i].start();
 		
-		for (int j=0;j<10;j++) {
-			search bus1 = new search (temperaturas);
-			bus1.start();
-			bus1.join();
+		search[] hilos = new search[11];
+		
+		for (int g=0;g<10;g++) {
+			hilos[g].start();
+			hilos[g].join();
 		}
+		
 	}
 }
 
