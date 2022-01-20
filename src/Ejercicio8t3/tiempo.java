@@ -27,11 +27,6 @@ class tiempo {
 	
 	//Metodo Sincronizado donde los hilos fracionaran de 10 en 10 y buscaran el maximo valor
 	public void busqueda () {
-		try {
-			Thread.sleep(2000);
-		}catch(InterruptedException e) {
-			e.printStackTrace();
-		}
 		int maxim = gtemp.get(0);
 		for (int i=minimo;i<maximo;i++) {
 				if (maxim<gtemp.get(i)) {
@@ -49,11 +44,6 @@ class tiempo {
 	
 	public void busqueda2 () {
 		if (liberar == true) {
-			try {
-				Thread.sleep(2000);
-			}catch(InterruptedException e) {
-				e.printStackTrace();
-			}
 			int maxim2 = gtemp2.get(0);
 			for (int i=0;i<gtemp2.size();i++) {
 					if (maxim2<gtemp2.get(i)) {

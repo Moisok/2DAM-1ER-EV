@@ -19,9 +19,14 @@ public class Ejercicio8_temperaturas {
 		search[] hilos = new search[11];
 		
 		for (int g=0;g<10;g++) {
+			hilos[g] = new search(temperaturas);
 			hilos[g].start();
+ 		}
+		
+		for (int g=0;g<10;g++) {
 			hilos[g].join();
-		}
+ 		}
+		
 		
 	}
 }
