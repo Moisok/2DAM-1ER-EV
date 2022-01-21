@@ -12,9 +12,7 @@ public class ParkingV2 {
 		System.out.println("[SIMULACION DE PARKING INICIADA LOS COCHES PUEDEN TARDAR HASTA 1 MINUTO EN LLEGAR]");
 		
 		for (int i=0;i<40;i++) {
-			
 			new parking(accesoParking).start();
-			
 		}
 	}
 }

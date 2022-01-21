@@ -20,6 +20,11 @@ public class Ejercicio8_temperaturas {
 		
 		for (int g=0;g<10;g++) {
 			hilos[g] = new search(temperaturas);
+			try {
+				Thread.sleep(2000);
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
 			hilos[g].start();
  		}
 		
