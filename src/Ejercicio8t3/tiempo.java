@@ -33,7 +33,7 @@ class tiempo {
 					maxim = gtemp.get(i);
 				};
 		}
-		System.out.println(Thread.currentThread().getName() + " Ha encontrado de maximo " + maxim+"ยบ");
+		System.out.println(Thread.currentThread().getName() + " Ha encontrado de maximo " + maxim+"บ");
 		gtemp2.add(maxim);
 		minimo = minimo + 10;
 		maximo = maximo + 10;
@@ -50,7 +50,7 @@ class tiempo {
 						maxim2 = gtemp2.get(i);
 					};
 			}
-			System.out.println("Maxima: " + maxim2 + "ยบ");
+			System.out.println("Maxima: " + maxim2 + "บ");
 			
 		}
 	}

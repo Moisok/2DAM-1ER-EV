@@ -30,57 +30,31 @@ class AccesRW {
 	
 	ArrayList <Integer> productos = new ArrayList <Integer>(); //Aray de 5
 	
-	private boolean lib_cons = false;
-	
-	private boolean lib_prod = true;
-	
-	
 	synchronized void producir () throws InterruptedException {
-		while (!lib_prod) {
+		while  (productos.size() >= 5) {
 			wait();
 		}
-		if (productos.size()==5) {
-			System.out.println("Stock Lleno produccion bloqueada");
-			notify();
-			lib_prod = false;
-			lib_cons = true;
-			Thread.sleep(3000);
-		}else {
-			random = (int)(Math.random()*(50 - 1)+1);
-			System.out.println("Productor produce [" + random + "]");
-			productos.add(random);
-			notify();
-			lib_prod = false;
-			lib_cons = true;
-			Thread.sleep(3000);
-		}	
+		
+		random = (int)(Math.random()*(50 - 1)+1);
+		System.out.println("Productor produce [" + random + "]");
+		productos.add(random);
+		notify();
+		
 	}
 	
 	synchronized void consumir () throws InterruptedException {
-		while (!lib_cons) {
+		while (productos.size() <= 0) {
 			wait();
 		}
-		if (productos.size()==0) {
-			System.out.println("Stock vacio, no hay nada que comprar");
-			notify();
-			lib_prod=true;
-			lib_cons=false;
-		}else {
-				System.out.println("Consumidor consume producto ["+productos.get(productos.size()-1)+"]\n");
-				productos.remove(productos.size()-1);
-				notify();
-				lib_prod=true;
-				lib_cons=false;
-			}
+			random2 = (int)(Math.random()*(productos.size() - 0));
+			System.out.println("Consumidor consume producto ["+productos.get(random2)+"]\n");
+			productos.remove(random2);
+			notify();	
+
 		}
 	}
 	
 
-		
-
-	
-	
-	
 //Hilo productor
 class producir extends Thread {
 		AccesRW accesrw;
@@ -91,9 +65,10 @@ class producir extends Thread {
 		//runable
 		@Override
 		public void run () {
-			for (int i=0;i<49;i++) {
+			for (int i=0;i<50;i++) {
 				try {
 					accesrw.producir();
+					Thread.sleep((int)(Math.random()*1000));
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -112,9 +87,10 @@ class consumir extends Thread {
 		//runable
 		@Override
 		public void run () {
-			for (int i=0;i<49;i++) {
+			for (int i=0;i<50;i++) {
 				try {
-					accesrw.consumir();
+					accesrw.consumir();	
+					Thread.sleep((int)(Math.random()*2000));
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
