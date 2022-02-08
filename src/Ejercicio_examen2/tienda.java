@@ -122,7 +122,7 @@ public class tienda {
 			}
 		}
 		
-		System.out.println("[REPARTIR] " + repartidor + " ya ha llevado la comanda a su destino");
+		System.out.println("[REPARTIR] " + repartidor + " ya ha llevado la comanda a su destino [PEDIDO ENTREGADO]");
 		
 		
 		if (RepartirComanda.size()==0) {

@@ -22,7 +22,8 @@ public class repartidor extends Thread {
 			t.repartirComanda(repartidor_nombre);
 			
 			try {
-				Thread.sleep((int)(Math.random()*(15000-5000)+1000));	
+				int tiempo = (int)(Math.random()*(15000-5000)+5000);
+				Thread.sleep(tiempo);	
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
