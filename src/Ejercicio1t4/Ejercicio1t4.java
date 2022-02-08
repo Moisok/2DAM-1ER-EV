@@ -18,7 +18,7 @@ public class Ejercicio1t4 {
 		String KeyboardData= " ";
 		
 		//Bucle
-		while (KeyboardData != "exit") {
+		while (KeyboardData.contentEquals("exit") == false) {
 			
 			System.out.println("Introduce Direccion o ip");
 			
@@ -27,12 +27,20 @@ public class Ejercicio1t4 {
 			if (Character.isDigit(KeyboardData.charAt(0))) {
 				System.out.println(" ");
 				try {
-					System.out.println("Address: " + InetAddress.getByName(KeyboardData).getHostName().toString());
+					System.out.println("Address: " + InetAddress.getByName(KeyboardData).getHostName());
 				} catch (UnknownHostException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else {
+			}
+			
+			//Condicion para salir
+			else if (KeyboardData.equals("exit")) {
+				
+				System.out.println("Finalizando consulta");
+			}
+			
+			else {
 				try {
 					System.out.println(" ");
 					System.out.println("Adress: " + InetAddress.getByName(KeyboardData).getHostAddress());
@@ -44,7 +52,7 @@ public class Ejercicio1t4 {
 				
 		}
 
-		System.out.println("ConsultaFinalizada");
+		System.out.println("Consulta Finalizada");
 	}
 
 }
