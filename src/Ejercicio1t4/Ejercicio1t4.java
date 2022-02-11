@@ -18,7 +18,7 @@ public class Ejercicio1t4 {
 		String KeyboardData= " ";
 		
 		//Bucle
-		while (KeyboardData.contentEquals("exit") == false) {
+		while (KeyboardData.contentEquals("exit") == false || KeyboardData.contentEquals("quit") == false) {
 			
 			System.out.println("Introduce Direccion o ip");
 			
@@ -29,13 +29,12 @@ public class Ejercicio1t4 {
 				try {
 					System.out.println("Address: " + InetAddress.getByName(KeyboardData).getHostName());
 				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.err.println("No puede encontrar la direccion o el servidor");
 				}
 			}
 			
 			//Condicion para salir
-			else if (KeyboardData.equals("exit")) {
+			else if (KeyboardData.equals("exit") || KeyboardData.equals("quit")) {
 				
 				System.out.println("Finalizando consulta");
 			}
@@ -45,8 +44,7 @@ public class Ejercicio1t4 {
 					System.out.println(" ");
 					System.out.println("Adress: " + InetAddress.getByName(KeyboardData).getHostAddress());
 				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.err.println("No puede encontrar la direccion o el servidor");
 				}
 			}
 				
