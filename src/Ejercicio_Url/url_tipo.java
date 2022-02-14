@@ -23,6 +23,11 @@ public class url_tipo {
 		
 		InputStream input;
 		
+		String q = "learn java language";
+		
+
+		double megabytes;
+		
 		long d;
 		
 			while (inputKeyboard.contains("exit") == false ) {
@@ -39,16 +44,25 @@ public class url_tipo {
 				input = conexion.getInputStream();
 	
 				System.out.println("\nInformacion sobre: " + conexion.getURL());
+				
 				System.out.println("Contenido: " + conexion.getContentType());
-				if (conexion.getContentType().contains("image")) {
-					System.out.println("Tamaño imagen: " + conexion.getContentLength()/1024/1024 + " Mb");
+				
+				if(conexion.getContentType().contains("text") && conexion.getContentType().contains("UTF-8")) {
+					System.out.println("Codificacion: UTF-8");
+				}
+				else if (conexion.getContentType().contains("image")) {
+					megabytes = conexion.getContentLength()/1024;
+					System.out.println("Tamanio imagen: " + megabytes + " Kb");
+					
 				}
 				else if (!conexion.getContentType().contains("image") && !conexion.getContentType().contains("text")) {
-					System.out.println("Tamaño: " + conexion.getContentLength()/1024 + " Mb");
+					megabytes = conexion.getContentLength()/1024;
+					System.out.println("Tamanio: " + megabytes + " Kb");
 					d = conexion.getDate();
 					System.out.println("Ultima modificacion: " + new Date(d));
 				}
 				
+				System.out.println(" ");
 
 				}catch(IOException e) {
 					
