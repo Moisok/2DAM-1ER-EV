@@ -2,7 +2,9 @@ package Ejercicio_Url;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
+import java.sql.Date;
 import java.util.Scanner;
 
 //Moises Sepulveda Segarra
@@ -19,6 +21,10 @@ public class url_tipo {
 					
 		String inputKeyboard = " ";
 		
+		InputStream input;
+		
+		long d;
+		
 			while (inputKeyboard.contains("exit") == false ) {
 					
 				System.out.println("Introduce enlace");
@@ -29,13 +35,24 @@ public class url_tipo {
 				URL direccion = new URL(inputKeyboard);
 				
 				URLConnection conexion = direccion.openConnection();
+				
+				input = conexion.getInputStream();
 	
-				System.out.println("Contenido: " + direccion.getFile().lastIndexOf(1));
+				System.out.println("\nInformacion sobre: " + conexion.getURL());
+				System.out.println("Contenido: " + conexion.getContentType());
+				if (conexion.getContentType().contains("image")) {
+					System.out.println("Tamaño imagen: " + conexion.getContentLength()/1024/1024 + " Mb");
+				}
+				else if (!conexion.getContentType().contains("image") && !conexion.getContentType().contains("text")) {
+					System.out.println("Tamaño: " + conexion.getContentLength()/1024 + " Mb");
+					d = conexion.getDate();
+					System.out.println("Ultima modificacion: " + new Date(d));
+				}
+				
 
 				}catch(IOException e) {
 					
-					System.out.println("No se ha podido obtener la informacion del tipo de contenido");
-					e.printStackTrace();
+					System.out.println("\nNo se ha podido obtener la informacion del tipo de contenido");
 					
 			}		
 		}				
