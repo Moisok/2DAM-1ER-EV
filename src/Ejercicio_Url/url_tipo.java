@@ -25,7 +25,6 @@ public class url_tipo {
 		
 		String q = "learn java language";
 		
-
 		double megabytes;
 		
 		long d;
@@ -47,8 +46,9 @@ public class url_tipo {
 				
 				System.out.println("Contenido: " + conexion.getContentType());
 				
-				if(conexion.getContentType().contains("text") && conexion.getContentType().contains("UTF-8")) {
-					System.out.println("Codificacion: UTF-8");
+				if(conexion.getContentType().contains("charset")) {
+					String[] encoding = conexion.getContentType().split("=");
+					System.out.println("Codificacion: " + encoding[1]);
 				}
 				else if (conexion.getContentType().contains("image")) {
 					megabytes = conexion.getContentLength()/1024;
