@@ -19,36 +19,36 @@ public class ConexionCliente extends Thread {
 	public void run() {
 		
 		cliente.salida.println("Hola, bienvenidos a SV");
+		cliente.salida.println("Elige 1 para modo texto y 2 para modo sumar");
 		
 		try {
 			
-			while(cliente.estaConectado()) {
-				
+			while(cliente.estaConectado()) {	
 				String mensaje = cliente.entrada.readLine();
-				
-				if (Character.isDigit(mensaje.charAt(0))) {
+				if (mensaje.equals("1")) {
+					cliente.salida.println("MODO MENSAJE (Escribe exit para salir)");
+					while(!mensaje.equals("exit")) {
+						mensaje = cliente.entrada.readLine();
+						servidor.enviarMensajeATodos(mensaje);
+					}
+				}
+				if (mensaje.contains("2")) {		
+					cliente.salida.println("MODO SUMAR (Escribe exit para salir)");
+					while (!mensaje.equals("exit")) {
+						mensaje = cliente.entrada.readLine();
+						if (Character.isDigit(mensaje.charAt(0))) {
+							int numero = Integer.parseInt(mensaje);		
+							servidor.sumatorio(numero);
+						}
+						else if(mensaje.equals("=")){
+							cliente.salida.println("el resultado es: " + servidor.sumar);
+						}
+					}
 					
-					System.out.println("Modo sumar");
-					
-					int numero = Integer.parseInt(mensaje);
-					
-					servidor.sumatorio(numero);
 				}
 				
-				else if(mensaje.equals("=")) {
-					
-					servidor.resultado();
-				}
-				
-				else {
-					
-					System.out.println("Modo mensaje");
-					
-					servidor.enviarMensajeATodos(mensaje);
-				}
-				
+	
 			}
-			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

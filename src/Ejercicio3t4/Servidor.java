@@ -53,9 +53,5 @@ public class Servidor {
 		sumar = sumar + numero;
 	}
 	
-	public void resultado() {
-		System.out.println("resultado: " + sumar);
-	}
-	
-	
+
 }
