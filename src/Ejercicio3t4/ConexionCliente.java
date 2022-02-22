@@ -35,7 +35,7 @@ public class ConexionCliente extends Thread {
 					servidor.sumatorio(numero);
 				}
 				
-				else if(mensaje.contains("=")) {
+				else if(mensaje.equals("=")) {
 					
 					servidor.resultado();
 				}
