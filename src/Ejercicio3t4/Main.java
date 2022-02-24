@@ -3,6 +3,8 @@ package Ejercicio3t4;
 import java.io.IOException;
 import java.net.Socket;
 
+import Ejercicio3t4Cliente.Cliente;
+
 public class Main {
 
 	public static void main(String [] args) {

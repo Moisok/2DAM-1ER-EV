@@ -1,4 +1,4 @@
-package Ejercicio3t4;
+package Ejercicio3t4Cliente;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,11 +8,11 @@ import java.net.Socket;
 
 public class Cliente {
 
-	private Socket socket;
+	public Socket socket;
 	
-	BufferedReader entrada;
+	public BufferedReader entrada;
 	
-	PrintWriter salida;
+	public PrintWriter salida;
 	
 	
 	public Cliente(Socket socket) throws IOException {
@@ -31,4 +31,5 @@ public class Cliente {
 		return !socket.isClosed();
 		
 	}
+	
 }

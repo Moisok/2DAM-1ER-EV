@@ -2,6 +2,8 @@ package Ejercicio3t4;
 
 import java.io.IOException;
 
+import Ejercicio3t4Cliente.Cliente;
+
 public class ConexionCliente extends Thread {
 
 	private Cliente cliente;
@@ -22,7 +24,6 @@ public class ConexionCliente extends Thread {
 		cliente.salida.println("Elige 1 para modo texto y 2 para modo sumar");
 		
 		try {
-			
 			while(cliente.estaConectado()) {	
 				String mensaje = cliente.entrada.readLine();
 				if (mensaje.equals("1")) {
@@ -42,10 +43,15 @@ public class ConexionCliente extends Thread {
 						}
 						else if(mensaje.equals("=")){
 							cliente.salida.println("el resultado es: " + servidor.sumar);
+						}else {
+							cliente.salida.println("ERROR");
 						}
 					}
-					
 				}
+				//Revisar
+				/*else if(!mensaje.contains("quit")) {
+					cliente.socket.isClosed();
+				}*/
 				
 	
 			}

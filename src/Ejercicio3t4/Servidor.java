@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import Ejercicio3t4Cliente.Cliente;
+
 public class Servidor {
 
 	int sumar = 0;
@@ -53,5 +55,7 @@ public class Servidor {
 		sumar = sumar + numero;
 	}
 	
+	
 
 }
+
