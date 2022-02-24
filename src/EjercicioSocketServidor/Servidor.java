@@ -1,15 +1,15 @@
-package Ejercicio3t4;
+package EjercicioSocketServidor;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import Ejercicio3t4Cliente.Cliente;
+import EjercicioSocketCliente.Cliente;
 
 public class Servidor {
 
-	int sumar = 0;
+	public int sumar = 0;
 	
 	private ServerSocket socket; 
 	//Pots rebre connexions des d'altres equips
@@ -46,7 +46,7 @@ public class Servidor {
 	public void enviarMensajeATodos(String mensaje) {
 		for(Cliente cliente : clientes) 
 		{
-			cliente.salida.println(mensaje);
+			cliente.salidaDatos.println(mensaje);
 		}
 	}
 	
@@ -55,7 +55,13 @@ public class Servidor {
 		sumar = sumar + numero;
 	}
 	
+	public int resultado() {
+		return sumar;
+	}
+
+	public void SocketIsclosed() {
+		socket.isClosed();
+		
+	}
 	
-
-}
-
+	}
